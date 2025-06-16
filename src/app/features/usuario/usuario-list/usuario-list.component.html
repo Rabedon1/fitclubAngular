@@ -1,0 +1,14 @@
+<div class="bg-black min-h-screen text-yellow-400 p-6">
+  <h2 class="text-3xl font-bold mb-6 text-center">Lista de Usuarios</h2>
+  <div *ngIf="usuarios.length; else noUsuarios" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div *ngFor="let usuario of usuarios" class="bg-gray-900 p-4 rounded-lg shadow-lg">
+      <p><strong>ID:</strong> {{ usuario.idUsuario }}</p>
+      <p><strong>Nombre:</strong> {{ usuario.nombre }}</p>
+      <p><strong>Correo:</strong> {{ usuario.correo }}</p>
+      <a [routerLink]="['/usuarios/edit', usuario.idUsuario]" class="text-yellow-300 hover:text-yellow-400">Editar</a>
+    </div>
+  </div>
+  <ng-template #noUsuarios>
+    <p class="text-center text-gray-400">No hay usuarios disponibles.</p>
+  </ng-template>
+</div>

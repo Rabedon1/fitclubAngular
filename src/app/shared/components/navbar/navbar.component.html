@@ -1,0 +1,38 @@
+<nav class="bg-black text-yellow-400 shadow-lg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <a routerLink="/home">
+          <img src="/assets/images/logoFitclub.jpg" alt="Logo FitClub" class="h-10 w-auto">
+        </a>
+      </div>
+
+      <!-- Menú de navegación (pantallas grandes) -->
+      <div class="hidden md:flex space-x-4">
+        <a routerLink="/home" routerLinkActive="text-yellow-300" [routerLinkActiveOptions]="{exact: true}" class="px-3 py-2 rounded-md text-sm font-medium hover:text-yellow-300 transition duration-200">Inicio</a>
+        <a routerLink="/usuarios/list" routerLinkActive="text-yellow-300" class="px-3 py-2 rounded-md text-sm font-medium hover:text-yellow-300 transition duration-200">Usuarios</a>
+        <button (click)="logout()" class="px-3 py-2 rounded-md text-sm font-medium hover:text-yellow-300 transition duration-200">Cerrar Sesión</button>
+      </div>
+
+      <!-- Botón de menú hamburguesa (móviles) -->
+      <div class="md:hidden">
+        <button (click)="toggleMenu()" class="text-yellow-400 hover:text-yellow-300 focus:outline-none">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path *ngIf="!isMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            <path *ngIf="isMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Menú móvil (desplegable) -->
+    <div *ngIf="isMenuOpen" class="md:hidden">
+      <div class="px-2 pt-2 pb-3 space-y-1 bg-gray-900 rounded-md">
+        <a routerLink="/home" routerLinkActive="text-yellow-300" [routerLinkActiveOptions]="{exact: true}" class="block px-3 py-2 rounded-md text-base font-medium hover:text-yellow-300 transition duration-200">Inicio</a>
+        <a routerLink="/usuarios/list" routerLinkActive="text-yellow-300" class="block px-3 py-2 rounded-md text-base font-medium hover:text-yellow-300 transition duration-200">Usuarios</a>
+        <button (click)="logout()" class="block px-3 py-2 rounded-md text-base font-medium hover:text-yellow-300 transition duration-200">Cerrar Sesión</button>
+      </div>
+    </div>
+  </div>
+</nav>

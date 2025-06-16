@@ -1,0 +1,110 @@
+<!-- Hero Section -->
+<section
+  class="relative min-h-screen bg-cover bg-center flex items-center justify-center"
+  style="background-image: url('/assets/images/gym-background.jpg');"
+>
+  <!-- Overlay oscuro -->
+  <div class="absolute inset-0 bg-black opacity-70"></div>
+
+  <div class="relative text-center text-yellow-400 z-10 px-4">
+    <h1 class="text-5xl md:text-6xl font-extrabold mb-4 animate-fade-in">
+      ¡Transforma tu vida con FitClub!
+    </h1>
+    <p class="text-xl md:text-2xl mb-8 animate-fade-in-delay">
+      Reserva clases, personaliza entrenamientos y alcanza tus metas.
+    </p>
+    <a
+      routerLink="/explore"
+      class="bg-yellow-500 text-black font-semibold px-8 py-4 rounded-md text-lg hover:bg-yellow-400 transition-transform duration-300 transform hover:scale-105"
+    >
+      Explora Ahora
+    </a>
+  </div>
+</section>
+
+<!-- Servicios Section -->
+<section class="bg-gray-900 py-16">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center text-yellow-400 mb-12">
+      Nuestros Servicios
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Servicio 1: Reservas -->
+      <div class="bg-black p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <img
+          src="/assets/images/service1.jpg"
+          alt="Reservas de Clases"
+          class="w-full h-48 object-cover rounded-md mb-4"
+        >
+        <h3 class="text-xl font-semibold text-yellow-200 mb-2">Reservas Clases</h3>
+        <p class="text-gray-300">
+          Reserva tus sesiones de yoga, crossfit, o pesas con un solo clic.
+        </p>
+      </div>
+
+      <!-- Servicio 2: Entrenamientos -->
+      <div class="bg-black p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <img
+          src="/assets/images/service2.png"
+          alt="Entrenamientos Personalizados"
+          class="w-full h-48 object-cover rounded-md mb-4"
+        >
+        <h3 class="text-xl font-semibold text-yellow-200 mb-2">Entrenamientos Personalizados</h3>
+        <p class="text-gray-300">
+          Planes diseñados para tus objetivos, con seguimiento de expertos.
+        </p>
+      </div>
+
+      <!-- Servicio 3: Progreso -->
+      <div class="bg-black p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <img
+          src="/assets/images/service3.jpg"
+          alt="Seguimiento de Progreso"
+          class="w-full h-48 object-cover rounded-md mb-4"
+        >
+        <h3 class="text-xl font-semibold text-yellow-200 mb-2">Seguimiento de Progreso</h3>
+        <p class="text-gray-300">
+          Monitorea tus avances y mantén la motivación con estadísticas claras.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonios Section -->
+<section class="bg-black py-16">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center text-yellow-400 mb-12">
+      Lo que dicen nuestros usuarios
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
+        <p class="text-gray-300 italic mb-4">
+          "FitClub cambió mi rutina para siempre. ¡100% recomendado!"
+        </p>
+        <p class="text-yellow-400 font-semibold">– Juan Pérez</p>
+      </div>
+      <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
+        <p class="text-gray-300 italic mb-4">
+          "La facilidad para reservar clases me motiva a entrenar todos los días."
+        </p>
+        <p class="text-yellow-400 font-semibold">– María Gómez</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Final -->
+<section class="bg-yellow-500 py-12">
+  <div class="container mx-auto px-4 text-center">
+    <h2 class="text-3xl font-bold text-black mb-4">
+      ¡Únete a la revolución del fitness!
+    </h2>
+    <a
+      routerLink="/auth/register"
+      class="bg-black text-yellow-400 font-semibold px-8 py-4 rounded-md hover:bg-gray-900 transition-transform duration-300 transform hover:scale-105"
+    >
+      Únete Hoy
+    </a>
+  </div>
+</section>

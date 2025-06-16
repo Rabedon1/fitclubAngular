@@ -1,0 +1,69 @@
+<div
+  class="min-h-screen flex items-center justify-center bg-cover bg-center"
+  style="background-image: url('https://images.unsplash.com/photo-1599058917212-d750089bc07e?fit=crop&w=1920&q=80');"
+>
+  <!-- Overlay oscuro para mejorar legibilidad -->
+  <div class="absolute inset-0 bg-gray-800 opacity-60"></div>
+
+  <div class="relative bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md text-yellow-400">
+    <!-- Logo -->
+    <div class="flex justify-center mb-6">
+      <img src="/images/logoFitclub.jpg" alt="Logo FitClub" class="h-16 w-auto">
+    </div>
+
+<h1 class="text-2xl font-bold text-center mb-6 text-bg-gray-800">Iniciar Sesión</h1>
+    <!-- Mensaje de notificación -->
+    <div
+      *ngIf="message.text"
+      class="p-4 mb-4 rounded-md text-white text-center"
+      [ngClass]="{
+        'bg-green-600': message.type === 'success',
+        'bg-red-600': message.type === 'error'
+      }"
+    >
+      {{ message.text }}
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-4">
+      <div>
+        <label for="correo" class="block text-sm font-medium text-yellow-400">Correo</label>
+        <input
+          id="correo"
+          formControlName="correo"
+          type="email"
+          class="w-full p-2 border border-yellow-400 bg-gray-800 text-yellow-400 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+          [ngClass]="{'border-red-500': loginForm.get('correo')?.invalid && loginForm.get('correo')?.touched}"
+          placeholder="Ingresa tu correo"
+        >
+        <div *ngIf="loginForm.get('correo')?.invalid && loginForm.get('correo')?.touched" class="text-red-500 text-sm mt-1">
+          <span *ngIf="loginForm.get('correo')?.errors?.['required']">El correo es obligatorio.</span>
+          <span *ngIf="loginForm.get('correo')?.errors?.['email']">Ingresa un correo válido.</span>
+        </div>
+      </div>
+      <div>
+        <label for="password" class="block text-sm font-medium text-yellow-400">Contraseña</label>
+        <input
+          id="password"
+          formControlName="password"
+          type="password"
+          class="w-full p-2 border border-yellow-400 bg-gray-800 text-yellow-400 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+          [ngClass]="{'border-red-500': loginForm.get('password')?.invalid && loginForm.get('password')?.touched}"
+          placeholder="Ingresa tu contraseña"
+        >
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-red-500 text-sm mt-1">
+          La contraseña es obligatoria.
+        </div>
+      </div>
+       <button
+        type="submit"
+        [disabled]="loading"
+        class="w-full bg-yellow-400 text-gray-800 p-3 rounded-md font-semibold hover:bg-yellow-500 disabled:bg-gray-600 disabled:text-gray-400 disabled:cursor-not-allowed transition duration-200"
+      >
+        {{ loading ? 'Cargando...' : 'Iniciar Sesión' }}
+      </button>
+    </form>
+    <p class="text-center mt-4 text-yellow-400">
+      ¿No tienes cuenta? <a routerLink="/register" class="text-yellow-300 hover:underline">Regístrate</a>
+    </p>
+  </div>
+</div>
