@@ -93,11 +93,13 @@ export class UsuarioEditComponent implements OnInit {
       this.usuarioService.actualizarUsuario(this.id, request).subscribe({
         next: (response) => {
           console.log('Usuario actualizado:', response);
+
           this.router.navigate(['/usuarios/list']);
         },
         error: (err) => {
-          this.error = `Error al actualizar usuario: ${err.message || 'Desconocido'}`;
+
           console.error('Error en la solicitud PUT:', err);
+          this.router.navigate(['/usuarios/list']);
         }
       });
     } else {

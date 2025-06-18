@@ -72,7 +72,7 @@ export class MembresiaEditComponent implements OnInit {
         next: (response) => {
           console.log('Membresía actualizada:', response);
           this.loading = false;
-          this.router.navigate(['/membresias/list']);
+
         },
         error: (err) => {
           this.loading = false;
