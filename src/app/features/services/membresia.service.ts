@@ -8,7 +8,7 @@ import { MembresiaDto } from '../interfaces/membresia';
   providedIn: 'root'
 })
 export class MembresiaService {
-  private apiUrl = '/api';
+  private apiUrl = 'http://localhost:8080/api';
 
   constructor(private http: HttpClient) {}
 
