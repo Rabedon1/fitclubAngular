@@ -1,0 +1,8 @@
+/* Asegurar que Tailwind se aplique correctamente */
+
+
+/* Estilos personalizados */
+footer {
+  transition: all 0.3s ease;
+}
+

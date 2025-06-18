@@ -1,21 +1,62 @@
 <div class="bg-black min-h-screen text-yellow-400 p-6">
   <h2 class="text-3xl font-bold mb-6 text-center">Editar Usuario</h2>
-  <form *ngIf="editForm" [formGroup]="editForm" (ngSubmit)="actualizarUsuario()" class="max-w-md mx-auto">
-    <div class="mb-4">
-      <label for="nombre" class="block text-sm font-medium">Nombre</label>
-      <input id="nombre" formControlName="nombre" type="text" class="w-full p-2 rounded-md bg-gray-900 text-yellow-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400">
-      <div *ngIf="editForm.get('nombre')?.invalid && editForm.get('nombre')?.touched" class="text-red-500 text-sm mt-1">
-        El nombre es requerido.
+  <form *ngIf="editForm" [formGroup]="editForm" (ngSubmit)="actualizarUsuario()" class="max-w-md mx-auto space-y-4">
+    <div>
+      <label for="nombres" class="block text-sm font-medium">Nombres</label>
+      <input id="nombres" formControlName="nombres" type="text" class="w-full p-2 rounded-md bg-gray-900 text-yellow-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+      <div *ngIf="editForm.get('nombres')?.invalid && editForm.get('nombres')?.touched" class="text-red-500 text-sm mt-1">
+        Los nombres son requeridos y deben tener al menos 2 caracteres.
       </div>
     </div>
-    <div class="mb-4">
+    <div>
+      <label for="apellidos" class="block text-sm font-medium">Apellidos</label>
+      <input id="apellidos" formControlName="apellidos" type="text" class="w-full p-2 rounded-md bg-gray-900 text-yellow-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+      <div *ngIf="editForm.get('apellidos')?.invalid && editForm.get('apellidos')?.touched" class="text-red-500 text-sm mt-1">
+        Los apellidos son requeridos y deben tener al menos 2 caracteres.
+      </div>
+    </div>
+    <div>
       <label for="correo" class="block text-sm font-medium">Correo</label>
       <input id="correo" formControlName="correo" type="email" class="w-full p-2 rounded-md bg-gray-900 text-yellow-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400">
       <div *ngIf="editForm.get('correo')?.invalid && editForm.get('correo')?.touched" class="text-red-500 text-sm mt-1">
         Ingrese un correo válido.
       </div>
     </div>
-    <button type="submit" [disabled]="editForm.invalid" class="bg-yellow-500 text-black font-semibold px-6 py-2 rounded-md hover:bg-yellow-400">Guardar</button>
+    <div>
+      <label for="telefono" class="block text-sm font-medium">Teléfono</label>
+      <input id="telefono" formControlName="telefono" type="text" class="w-full p-2 rounded-md bg-gray-900 text-yellow-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+      <div *ngIf="editForm.get('telefono')?.invalid && editForm.get('telefono')?.touched" class="text-red-500 text-sm mt-1">
+        El teléfono debe tener 9-10 dígitos.
+      </div>
+    </div>
+    <div>
+      <label for="edad" class="block text-sm font-medium">Edad</label>
+      <input id="edad" formControlName="edad" type="number" class="w-full p-2 rounded-md bg-gray-900 text-yellow-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+      <div *ngIf="editForm.get('edad')?.invalid && editForm.get('edad')?.touched" class="text-red-500 text-sm mt-1">
+        La edad debe estar entre 18 y 100 años.
+      </div>
+    </div>
+    <div>
+      <label for="cedula" class="block text-sm font-medium">Cédula</label>
+      <input id="cedula" formControlName="cedula" type="text" class="w-full p-2 rounded-md bg-gray-900 text-yellow-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+      <div *ngIf="editForm.get('cedula')?.invalid && editForm.get('cedula')?.touched" class="text-red-500 text-sm mt-1">
+        La cédula debe tener exactamente 10 dígitos.
+      </div>
+    </div>
+    <div>
+      <label for="idRol" class="block text-sm font-medium">Rol</label>
+      <select id="idRol" formControlName="idRol" class="w-full p-2 rounded-md bg-gray-900 text-yellow-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+        <option value="1">Usuario</option>
+        <option value="2">Administrador</option>
+      </select>
+      <div *ngIf="editForm.get('idRol')?.invalid && editForm.get('idRol')?.touched" class="text-red-500 text-sm mt-1">
+        Seleccione un rol válido (1=Usuario, 2=Administrador).
+      </div>
+    </div>
+    <div class="flex justify-end space-x-2">
+      <button type="button" (click)="cancelar()" class="bg-gray-700 text-yellow-400 font-semibold px-6 py-2 rounded-md hover:bg-gray-600">Cancelar</button>
+      <button type="submit" [disabled]="editForm.invalid" class="bg-yellow-500 text-black font-semibold px-6 py-2 rounded-md hover:bg-yellow-400">Guardar</button>
+    </div>
   </form>
   <p *ngIf="error" class="text-red-500 text-center mt-4">{{ error }}</p>
 </div>

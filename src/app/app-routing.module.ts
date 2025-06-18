@@ -8,7 +8,9 @@ const routes: Routes = [
   {path: 'home', loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule) },
   {path: 'explore', loadChildren: () => import('./features/explore/explore.module').then(m => m.ExploreModule) },
   {path: 'usuarios', loadChildren: () => import('./features/usuario/usuario.module').then(m => m.UsuarioModule) },
-  { path: '**', redirectTo: '/login' }
+  {path: 'membresia', loadChildren: () => import('./features/membresia/membresia.module').then(m => m.MembresiaCreateModule) },
+/*   {path: 'historial-membresia', loadChildren: () => import('./features/historial-membresia/historial-membresias.module').then(m => m.HistorialMembresiasModule) },
+ */  { path: '**', redirectTo: '/login' }
 ];
 
 @NgModule({

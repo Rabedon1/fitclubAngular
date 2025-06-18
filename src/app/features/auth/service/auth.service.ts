@@ -9,6 +9,7 @@ import { tap } from 'rxjs/operators';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private apiUrl = 'http://localhost:8080/api/auth';
+  jwtHelper: any;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -16,15 +17,16 @@ export class AuthService {
   //El observable se puede suscribir para recibir la respuesta cuando esté disponible
   //El método `login` envía una solicitud POST al servidor con las credenciales del usuario
   //y guarda el token de autenticación en el almacenamiento local si la respuesta es exitosa.
-  login(credentials: LoginCredentials): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, credentials).pipe(
-      //cuando llega la respuesta del servidor, se ejecuta el siguiente código, hace esto(tap)
-      tap((response: LoginResponse) => {
+  login(credentials: { correo: string; password: string }): Observable<any> {
+    return this.http.post(`${this.apiUrl}/login`, credentials).pipe(
+      tap((response: any) => {
         if (response.token) {
+          console.log('Login exitoso, guardando token:', response.token);
           localStorage.setItem('token', response.token);
-          this.router.navigate(['/home']);
-         } // Redirigir al usuario a la página principal
-        })
+        } else {
+          console.error('Login fallido, no se recibió token');
+        }
+      })
     );
   }
 
@@ -40,9 +42,12 @@ export class AuthService {
   }
 
   // Obtener el token desde localStorage
-  getToken(): string | null {
-    return localStorage.getItem('token');
+   getToken(): string | null {
+    const token = localStorage.getItem('token');
+    console.log('getToken: Token recuperado:', token ? 'Presente' : 'Ausente');
+    return token;
   }
+
 
   // Decodificar el token para extraer información (sin verificar la firma)
   decodeToken(token: string): DecodedToken | null {
@@ -61,27 +66,38 @@ export class AuthService {
   }
 
   // Verificar si el usuario está autenticado
-  isAuthenticated(): boolean {
+    isAuthenticated(): boolean {
     const token = this.getToken();
-    if (!token) return false;
-
-    const decoded = this.decodeToken(token);
-    if (!decoded) return false;
-
-    // Verificar si el token no ha expirado
-    const now = Math.floor(Date.now() / 1000);
-    return decoded.exp > now;
+    if (!token) {
+      console.log('isAuthenticated: No se encontró token');
+      return false;
+    }
+    const isNotExpired = !this.jwtHelper.isTokenExpired(token);
+    console.log('isAuthenticated: Token encontrado, no expirado:', isNotExpired);
+    return isNotExpired;
   }
 
   // Obtener el rol del usuario
-  getUserRole(): string | null {
-    const decoded = this.decodeToken(this.getToken() || '');
-    return decoded ? decoded.rol : null;
+    getUserRole(): string | null {
+    const token = this.getToken();
+    if (token) {
+      try {
+        const decoded = this.jwtHelper.decodeToken(token);
+        const role = decoded.rol || null;
+        console.log('getUserRole: Rol decodificado:', role);
+        return role;
+      } catch (error) {
+        console.error('getUserRole: Error al decodificar token:', error);
+        return null;
+      }
+    }
+    console.log('getUserRole: No hay token');
+    return null;
   }
 
   // Cerrar sesión
-  logout(): void {
+   logout(): void {
+    console.log('Cerrando sesión, eliminando token');
     localStorage.removeItem('token');
-    this.router.navigate(['/auth/login']);
   }
 }

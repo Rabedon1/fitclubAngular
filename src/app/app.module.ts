@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/components/shared.module';
 import { NavComponent } from './shared/components/navbar/navbar.component';
 import { ExploreComponent } from './features/explore/explore.component';
-import { AuthInterceptor } from './core/auth.interceptor';
 
 
 
@@ -14,6 +13,9 @@ import { AuthInterceptor } from './core/auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
+
+
+
 
 
   ],
@@ -25,8 +27,8 @@ import { AuthInterceptor } from './core/auth.interceptor';
 
   ],
   providers: [
-    provideClientHydration(withEventReplay()),
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true } // Añadir el interceptor de autenticación
+    provideClientHydration(withEventReplay())
+
   ],
   bootstrap: [AppComponent]
 })

@@ -12,7 +12,7 @@
   </form>
   <div *ngIf="usuario" class="mt-6 bg-gray-900 p-4 rounded-lg shadow-lg max-w-md mx-auto">
     <p><strong>ID:</strong> {{ usuario.idUsuario }}</p>
-    <p><strong>Nombre:</strong> {{ usuario.nombre }}</p>
+    <p><strong>Nombre:</strong> {{ usuario.nombres }}</p>
     <p><strong>Correo:</strong> {{ usuario.correo }}</p>
   </div>
   <p *ngIf="error" class="text-red-500 text-center mt-4">{{ error }}</p>

@@ -1,13 +1,18 @@
 export interface Usuario {
   id: number;
-  nombre: string;
   correo: string;
+  nombres: string;
+  apellidos: string;
+  telefono: string;
+  edad: number;
+  cedula: string;
+  idRol: number;
   // Añade más campos según la entidad Usuario en el backend
 }
 
 export interface UsuarioDto {
   idUsuario: number;
-  nombre: string;
+  nombres: string;
   correo: string;
   apellidos: string;
   telefono: string;
@@ -20,7 +25,13 @@ export interface UsuarioDto {
 
 
 export interface UpdateUserRequestDto {
-  nombre?: string;
-  correo?: string;
-  // Añade más campos según UpdateUserRequestDto en el backend
+    idUsuario: number;
+    correo: string;
+    nombres: string;
+    apellidos: string;
+    telefono: string;
+    edad: number;
+    cedula: string;
+    idRol: number;
+
 }

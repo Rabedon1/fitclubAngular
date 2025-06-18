@@ -1,10 +1,10 @@
-<nav class="bg-black text-yellow-400 shadow-lg">
+<nav class="bg-gray-700 text-yellow-400 shadow-lg">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       <!-- Logo -->
       <div class="flex-shrink-0">
         <a routerLink="/home">
-          <img src="/assets/images/logoFitclub.jpg" alt="Logo FitClub" class="h-10 w-auto">
+          <img src="images/logoFitclub.jpg" alt="Logo FitClub" class="h-10 w-auto">
         </a>
       </div>
 
@@ -12,6 +12,8 @@
       <div class="hidden md:flex space-x-4">
         <a routerLink="/home" routerLinkActive="text-yellow-300" [routerLinkActiveOptions]="{exact: true}" class="px-3 py-2 rounded-md text-sm font-medium hover:text-yellow-300 transition duration-200">Inicio</a>
         <a routerLink="/usuarios/list" routerLinkActive="text-yellow-300" class="px-3 py-2 rounded-md text-sm font-medium hover:text-yellow-300 transition duration-200">Usuarios</a>
+        <a routerLink="/membresia" routerLinkActive="text-yellow-300" class="px-3 py-2 rounded-md text-sm font-medium hover:text-yellow-300 transition duration-200">Membresía</a>
+        <a routerLink="/historial" routerLinkActive="text-yellow-300" class="px-3 py-2 rounded-md text-sm font-medium hover:text-yellow-300 transition duration-200">Historial Membresias</a>
         <button (click)="logout()" class="px-3 py-2 rounded-md text-sm font-medium hover:text-yellow-300 transition duration-200">Cerrar Sesión</button>
       </div>
 
