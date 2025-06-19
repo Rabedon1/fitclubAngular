@@ -103,7 +103,7 @@
         </div>
 
         <!-- Fecha de Ingreso -->
-        <div>
+        <!-- <div>
           <label for="fechaIngreso" class="block text-sm font-medium text-yellow-400 mb-1">Fecha de Ingreso</label>
           <input
             id="fechaIngreso"
@@ -115,10 +115,10 @@
           <div *ngIf="registerForm.get('fechaIngreso')?.invalid && registerForm.get('fechaIngreso')?.touched" class="text-red-500 text-sm mt-1">
             La fecha de ingreso es obligatoria.
           </div>
-        </div>
+        </div> -->
 
         <!-- Edad -->
-        <div>
+        <!-- <div>
           <label for="edad" class="block text-sm font-medium text-yellow-400 mb-1">Edad</label>
           <input
             id="edad"
@@ -133,7 +133,7 @@
             <span *ngIf="registerForm.get('edad')?.errors?.['min']">Debes tener al menos 18 años.</span>
             <span *ngIf="registerForm.get('edad')?.errors?.['max']">La edad máxima es 100 años.</span>
           </div>
-        </div>
+        </div> -->
 
         <!-- Correo -->
         <div>

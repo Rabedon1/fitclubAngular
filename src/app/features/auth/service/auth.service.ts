@@ -99,5 +99,6 @@ export class AuthService {
    logout(): void {
     console.log('Cerrando sesión, eliminando token');
     localStorage.removeItem('token');
+    this.router.navigate(['/auth/login']);
   }
 }

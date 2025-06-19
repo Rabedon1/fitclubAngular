@@ -44,7 +44,7 @@ export class MembresiaCreateComponent {
         next: (response) => {
           console.log('Membresía creada:', response);
           this.loading = false;
-          this.router.navigate(['/membresias/list']);
+          this.router.navigate(['/home']);
         },
         error: (err) => {
           this.loading = false;
