@@ -14,10 +14,6 @@ import { ExploreComponent } from './features/explore/explore.component';
   declarations: [
     AppComponent,
 
-
-
-
-
   ],
   imports: [
     BrowserModule,

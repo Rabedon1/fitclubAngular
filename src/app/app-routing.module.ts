@@ -9,6 +9,8 @@ const routes: Routes = [
   {path: 'explore', loadChildren: () => import('./features/explore/explore.module').then(m => m.ExploreModule) },
   {path: 'usuarios', loadChildren: () => import('./features/usuario/usuario.module').then(m => m.UsuarioModule) },
   {path: 'membresia', loadChildren: () => import('./features/membresia/membresia.module').then(m => m.MembresiaCreateModule) },
+  {path: 'home-admin', loadChildren: () => import('./features/home-admin/home-admin.module').then(m => m.HomeAdminModule) },
+  {path: 'forbidden', loadChildren: () => import('./features/forbidden/forbidden.module').then(m => m.ForbiddenModule) },
 /*   {path: 'historial-membresia', loadChildren: () => import('./features/historial-membresia/historial-membresias.module').then(m => m.HistorialMembresiasModule) },
  */  { path: '**', redirectTo: '/login' }
 ];

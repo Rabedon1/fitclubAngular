@@ -1,11 +1,30 @@
-<div class="min-h-screen flex items-center justify-center bg-black p-4">
-  <div class="bg-gray-900 p-8 rounded-xl shadow-2xl w-full max-w-4xl text-yellow-400">
+<!-- Header con botones -->
+<header class="w-full bg-white text-gray-800 shadow-md py-4 px-6 flex items-center justify-between">
+
+ <!-- Botón de regresar -->
+  <button (click)="goBack()" class="flex items-center gap-2 text-yellow-700 hover:text-yellow-600 transition">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+    <span>Volver</span>
+  </button>
+  <!-- Botón de cerrar sesión -->
+  <button
+    (click)="logout()"
+    class="bg-yellow-500 text-white font-semibold px-4 py-2 rounded-md hover:bg-yellow-300 transition"
+  >
+    Cerrar Sesión
+  </button>
+</header>
+
+<div class="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+  <div class="bg-white bg-opacity-90 p-8 rounded-xl shadow-xl w-full max-w-4xl text-gray-800">
     <!-- Logo -->
     <div class="flex justify-center mb-8">
       <img src="/images/logoFitclub.jpg" alt="Logo FitClub" class="h-20 w-auto">
     </div>
 
-    <h1 class="text-3xl font-bold text-center mb-8 text-yellow-400">Crear Cuenta</h1>
+    <h1 class="text-3xl font-bold text-center mb-8">Crear Cuenta</h1>
 
     <!-- Mensaje de notificación -->
     <div
@@ -23,33 +42,33 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- Rol -->
         <div>
-          <label for="idRol" class="block text-sm font-medium text-yellow-400 mb-1">Rol</label>
+          <label for="idRol" class="block text-sm font-medium text-gray-700 mb-1">Rol</label>
           <select
             id="idRol"
             formControlName="idRol"
-            class="w-full p-3 border border-yellow-400 bg-gray-800 text-yellow-400 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
-            [ngClass]="{'border-red-500': registerForm.get('idRol')?.invalid && registerForm.get('idRol')?.touched}"
+            class="w-full p-3 border border-gray-300 bg-gray-50 text-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
+            [ngClass]="{'border-red-600': registerForm.get('idRol')?.invalid && registerForm.get('idRol')?.touched}"
           >
             <option value="" disabled>Selecciona un rol</option>
             <option *ngFor="let rol of roles" [value]="rol.idRol">{{ rol.nombre }}</option>
           </select>
-          <div *ngIf="registerForm.get('idRol')?.invalid && registerForm.get('idRol')?.touched" class="text-red-500 text-sm mt-1">
+          <div *ngIf="registerForm.get('idRol')?.invalid && registerForm.get('idRol')?.touched" class="text-red-600 text-sm mt-1">
             El rol es obligatorio.
           </div>
         </div>
 
         <!-- Cédula -->
         <div>
-          <label for="cedula" class="block text-sm font-medium text-yellow-400 mb-1">Cédula</label>
+          <label for="cedula" class="block text-sm font-medium text-gray-700 mb-1">Cédula</label>
           <input
             id="cedula"
             formControlName="cedula"
             type="text"
-            class="w-full p-3 border border-yellow-400 bg-gray-800 text-yellow-400 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
-            [ngClass]="{'border-red-500': registerForm.get('cedula')?.invalid && registerForm.get('cedula')?.touched}"
+            class="w-full p-3 border border-gray-300 bg-gray-50 text-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
+            [ngClass]="{'border-red-600': registerForm.get('cedula')?.invalid && registerForm.get('cedula')?.touched}"
             placeholder="10 dígitos"
           >
-          <div *ngIf="registerForm.get('cedula')?.invalid && registerForm.get('cedula')?.touched" class="text-red-500 text-sm mt-1">
+          <div *ngIf="registerForm.get('cedula')?.invalid && registerForm.get('cedula')?.touched" class="text-red-600 text-sm mt-1">
             <span *ngIf="registerForm.get('cedula')?.errors?.['required']">La cédula es obligatoria.</span>
             <span *ngIf="registerForm.get('cedula')?.errors?.['pattern']">Debe tener 10 dígitos.</span>
           </div>
@@ -57,78 +76,78 @@
 
         <!-- Nombres -->
         <div>
-          <label for="nombres" class="block text-sm font-medium text-yellow-400 mb-1">Nombres</label>
+          <label for="nombres" class="block text-sm font-medium text-gray-700 mb-1">Nombres</label>
           <input
             id="nombres"
             formControlName="nombres"
             type="text"
-            class="w-full p-3 border border-yellow-400 bg-gray-800 text-yellow-400 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
-            [ngClass]="{'border-red-500': registerForm.get('nombres')?.invalid && registerForm.get('nombres')?.touched}"
+            class="w-full p-3 border border-gray-300 bg-gray-50 text-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
+            [ngClass]="{'border-red-600': registerForm.get('nombres')?.invalid && registerForm.get('nombres')?.touched}"
             placeholder="Tus nombres"
           >
-          <div *ngIf="registerForm.get('nombres')?.invalid && registerForm.get('nombres')?.touched" class="text-red-500 text-sm mt-1">
+          <div *ngIf="registerForm.get('nombres')?.invalid && registerForm.get('nombres')?.touched" class="text-red-600 text-sm mt-1">
             Los nombres son obligatorios (mínimo 2 caracteres).
           </div>
         </div>
 
         <!-- Apellidos -->
         <div>
-          <label for="apellidos" class="block text-sm font-medium text-yellow-400 mb-1">Apellidos</label>
+          <label for="apellidos" class="block text-sm font-medium text-gray-700 mb-1">Apellidos</label>
           <input
             id="apellidos"
             formControlName="apellidos"
             type="text"
-            class="w-full p-3 border border-yellow-400 bg-gray-800 text-yellow-400 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
-            [ngClass]="{'border-red-500': registerForm.get('apellidos')?.invalid && registerForm.get('apellidos')?.touched}"
+            class="w-full p-3 border border-gray-300 bg-gray-50 text-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
+            [ngClass]="{'border-red-600': registerForm.get('apellidos')?.invalid && registerForm.get('apellidos')?.touched}"
             placeholder="Tus apellidos"
           >
-          <div *ngIf="registerForm.get('apellidos')?.invalid && registerForm.get('apellidos')?.touched" class="text-red-500 text-sm mt-1">
+          <div *ngIf="registerForm.get('apellidos')?.invalid && registerForm.get('apellidos')?.touched" class="text-red-600 text-sm mt-1">
             Los apellidos son obligatorios (mínimo 2 caracteres).
           </div>
         </div>
 
         <!-- Fecha de Nacimiento -->
         <div>
-          <label for="fechaNacimiento" class="block text-sm font-medium text-yellow-400 mb-1">Fecha de Nacimiento</label>
+          <label for="fechaNacimiento" class="block text-sm font-medium text-gray-700 mb-1">Fecha de Nacimiento</label>
           <input
             id="fechaNacimiento"
             formControlName="fechaNacimiento"
             type="date"
-            class="w-full p-3 border border-yellow-400 bg-gray-800 text-yellow-400 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
-            [ngClass]="{'border-red-500': registerForm.get('fechaNacimiento')?.invalid && registerForm.get('fechaNacimiento')?.touched}"
+            class="w-full p-3 border border-gray-300 bg-gray-50 text-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
+            [ngClass]="{'border-red-600': registerForm.get('fechaNacimiento')?.invalid && registerForm.get('fechaNacimiento')?.touched}"
           >
-          <div *ngIf="registerForm.get('fechaNacimiento')?.invalid && registerForm.get('fechaNacimiento')?.touched" class="text-red-500 text-sm mt-1">
+          <div *ngIf="registerForm.get('fechaNacimiento')?.invalid && registerForm.get('fechaNacimiento')?.touched" class="text-red-600 text-sm mt-1">
             La fecha de nacimiento es obligatoria.
           </div>
         </div>
 
         <!-- Fecha de Ingreso -->
         <div>
-          <label for="fechaIngreso" class="block text-sm font-medium text-yellow-400 mb-1">Fecha de Ingreso</label>
+          <label for="fechaIngreso" class="block text-sm font-medium text-gray-700 mb-1">Fecha de Ingreso</label>
           <input
             id="fechaIngreso"
             formControlName="fechaIngreso"
             type="date"
-            class="w-full p-3 border border-yellow-400 bg-gray-800 text-yellow-400 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
-            [ngClass]="{'border-red-500': registerForm.get('fechaIngreso')?.invalid && registerForm.get('fechaIngreso')?.touched}"
+            class="w-full p-3 border border-gray-300 bg-gray-50 text-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
+            [ngClass]="{'border-red-600': registerForm.get('fechaIngreso')?.invalid && registerForm.get('fechaIngreso')?.touched}"
           >
-          <div *ngIf="registerForm.get('fechaIngreso')?.invalid && registerForm.get('fechaIngreso')?.touched" class="text-red-500 text-sm mt-1">
+          <div *ngIf="registerForm.get('fechaIngreso')?.invalid && registerForm.get('fechaIngreso')?.touched" class="text-red-600 text-sm mt-1">
             La fecha de ingreso es obligatoria.
           </div>
         </div>
 
         <!-- Edad -->
         <div>
-          <label for="edad" class="block text-sm font-medium text-yellow-400 mb-1">Edad</label>
+          <label for="edad" class="block text-sm font-medium text-gray-700 mb-1">Edad</label>
           <input
             id="edad"
             formControlName="edad"
             type="number"
-            class="w-full p-3 border border-yellow-400 bg-gray-800 text-yellow-400 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
-            [ngClass]="{'border-red-500': registerForm.get('edad')?.invalid && registerForm.get('edad')?.touched}"
+            class="w-full p-3 border border-gray-300 bg-gray-50 text-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
+            [ngClass]="{'border-red-600': registerForm.get('edad')?.invalid && registerForm.get('edad')?.touched}"
             placeholder="Tu edad"
           >
-          <div *ngIf="registerForm.get('edad')?.invalid && registerForm.get('edad')?.touched" class="text-red-500 text-sm mt-1">
+          <div *ngIf="registerForm.get('edad')?.invalid && registerForm.get('edad')?.touched" class="text-red-600 text-sm mt-1">
             <span *ngIf="registerForm.get('edad')?.errors?.['required']">La edad es obligatoria.</span>
             <span *ngIf="registerForm.get('edad')?.errors?.['min']">Debes tener al menos 18 años.</span>
             <span *ngIf="registerForm.get('edad')?.errors?.['max']">La edad máxima es 100 años.</span>
@@ -137,16 +156,16 @@
 
         <!-- Correo -->
         <div>
-          <label for="correo" class="block text-sm font-medium text-yellow-400 mb-1">Correo</label>
+          <label for="correo" class="block text-sm font-medium text-gray-700 mb-1">Correo</label>
           <input
             id="correo"
             formControlName="correo"
             type="email"
-            class="w-full p-3 border border-yellow-400 bg-gray-800 text-yellow-400 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
-            [ngClass]="{'border-red-500': registerForm.get('correo')?.invalid && registerForm.get('correo')?.touched}"
+            class="w-full p-3 border border-gray-300 bg-gray-50 text-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
+            [ngClass]="{'border-red-600': registerForm.get('correo')?.invalid && registerForm.get('correo')?.touched}"
             placeholder="tu@correo.com"
           >
-          <div *ngIf="registerForm.get('correo')?.invalid && registerForm.get('correo')?.touched" class="text-red-500 text-sm mt-1">
+          <div *ngIf="registerForm.get('correo')?.invalid && registerForm.get('correo')?.touched" class="text-red-600 text-sm mt-1">
             <span *ngIf="registerForm.get('correo')?.errors?.['required']">El correo es obligatorio.</span>
             <span *ngIf="registerForm.get('correo')?.errors?.['email']">Ingresa un correo válido.</span>
           </div>
@@ -154,16 +173,16 @@
 
         <!-- Teléfono -->
         <div>
-          <label for="telefono" class="block text-sm font-medium text-yellow-400 mb-1">Teléfono</label>
+          <label for="telefono" class="block text-sm font-medium text-gray-700 mb-1">Teléfono</label>
           <input
             id="telefono"
             formControlName="telefono"
             type="text"
-            class="w-full p-3 border border-yellow-400 bg-gray-800 text-yellow-400 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
-            [ngClass]="{'border-red-500': registerForm.get('telefono')?.invalid && registerForm.get('telefono')?.touched}"
+            class="w-full p-3 border border-gray-300 bg-gray-50 text-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
+            [ngClass]="{'border-red-600': registerForm.get('telefono')?.invalid && registerForm.get('telefono')?.touched}"
             placeholder="10 dígitos"
           >
-          <div *ngIf="registerForm.get('telefono')?.invalid && registerForm.get('telefono')?.touched" class="text-red-500 text-sm mt-1">
+          <div *ngIf="registerForm.get('telefono')?.invalid && registerForm.get('telefono')?.touched" class="text-red-600 text-sm mt-1">
             <span *ngIf="registerForm.get('telefono')?.errors?.['required']">El teléfono es obligatorio.</span>
             <span *ngIf="registerForm.get('telefono')?.errors?.['pattern']">Debe tener 10 dígitos.</span>
           </div>
@@ -171,16 +190,16 @@
 
         <!-- Contraseña -->
         <div>
-          <label for="contrasena" class="block text-sm font-medium text-yellow-400 mb-1">Contraseña</label>
+          <label for="contrasena" class="block text-sm font-medium text-gray-700 mb-1">Contraseña</label>
           <input
             id="contrasena"
             formControlName="contrasena"
             type="password"
-            class="w-full p-3 border border-yellow-400 bg-gray-800 text-yellow-400 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
-            [ngClass]="{'border-red-500': registerForm.get('contrasena')?.invalid && registerForm.get('contrasena')?.touched}"
+            class="w-full p-3 border border-gray-300 bg-gray-50 text-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
+            [ngClass]="{'border-red-600': registerForm.get('contrasena')?.invalid && registerForm.get('contrasena')?.touched}"
             placeholder="Mínimo 6 caracteres"
           >
-          <div *ngIf="registerForm.get('contrasena')?.invalid && registerForm.get('contrasena')?.touched" class="text-red-500 text-sm mt-1">
+          <div *ngIf="registerForm.get('contrasena')?.invalid && registerForm.get('contrasena')?.touched" class="text-red-600 text-sm mt-1">
             La contraseña es obligatoria (mínimo 6 caracteres).
           </div>
         </div>
@@ -190,15 +209,10 @@
       <button
         type="submit"
         [disabled]="loading"
-        class="w-full bg-yellow-400 text-gray-800 p-3 rounded-md font-semibold hover:bg-yellow-500 disabled:bg-gray-600 disabled:text-gray-400 disabled:cursor-not-allowed transition duration-200"
+        class="w-full bg-yellow-600 text-white p-3 rounded-md font-semibold hover:bg-yellow-700 disabled:bg-yellow-300 disabled:text-gray-800 disabled:cursor-not-allowed transition duration-200"
       >
         {{ loading ? 'Cargando...' : 'Registrarse' }}
       </button>
     </form>
-
-    <!-- Enlace a login -->
-    <p class="text-center mt-6 text-yellow-400">
-      ¿Ya tienes cuenta? <a routerLink="/login" class="text-yellow-300 hover:underline font-medium">Inicia sesión</a>
-    </p>
   </div>
 </div>

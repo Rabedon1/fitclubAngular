@@ -5,12 +5,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsuarioListComponent } from './usuario-list/usuario-list.component';
 import { UsuarioSearchComponent } from './usuario-search/usuario-search.component';
 import { UsuarioEditComponent } from './usuario-edit/usuario-edit.component';
-
+/* import { AuthGuard } from '../../core/guards/auth.guard';
+ */
 const routes: Routes = [
   { path: '', redirectTo: 'list', pathMatch: 'full' },
   { path: 'list', component: UsuarioListComponent },
-  { path: 'search', component: UsuarioSearchComponent },
-  { path: 'edit/:id', component: UsuarioEditComponent }
+  { path: 'search', component: UsuarioSearchComponent},
+  { path: 'edit/:id', component: UsuarioEditComponent}
 ];
 
 @NgModule({
@@ -26,4 +27,4 @@ const routes: Routes = [
     ReactiveFormsModule
   ]
 })
-export class UsuarioModule { }
+export class UsuarioModule {}

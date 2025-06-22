@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-register',
@@ -24,7 +26,8 @@ export class RegisterComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private location: Location,
   ) {
     this.registerForm = this.fb.group({
       idRol: ['', Validators.required],
@@ -64,11 +67,12 @@ export class RegisterComponent {
 
     this.authService.register(user).subscribe({
       next: (response) => {
-        this.message = { text: 'Registro exitoso. Por favor, inicia sesión.', type: 'success' };
+        this.message = { text: 'Registro realizado con éxito', type: 'success' };
+         setTimeout(() => this.router.navigate(['/home-admin']), 2000);
         this.loading = false;
         this.registerForm.reset();
-        // Redirigir al login después de 2 segundos
-        setTimeout(() => this.router.navigate(['/login']), 2000);
+
+
       },
       error: (err) => {
         this.message = { text: 'Error en el registro. Verifica los datos.', type: 'error' };
@@ -76,4 +80,17 @@ export class RegisterComponent {
       }
     });
   }
+    goBack(): void {
+    this.location.back();
+  }
+
+  logout(): void {
+    this.authService.logout();
+  }
+
+
 }
+
+
+
+

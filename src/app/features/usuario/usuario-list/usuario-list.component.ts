@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioDto } from '../../interfaces/usuario';
 import { UsuarioService } from '../../services/usuario.service';
 import { Router } from  '@angular/router';
+import { AuthService } from '../../auth/service/auth.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-usuario-list',
@@ -12,7 +14,10 @@ import { Router } from  '@angular/router';
 export class UsuarioListComponent implements OnInit {
   usuarios: UsuarioDto[] = [];
 
-  constructor(private usuarioService: UsuarioService, private router: Router) {}
+  constructor(private usuarioService: UsuarioService,
+    private router: Router,
+    private location: Location,
+    private authService: AuthService) {}
 
   ngOnInit(): void {
     console.log('Cargando lista de usuarios');
@@ -30,4 +35,13 @@ export class UsuarioListComponent implements OnInit {
     }
     this.router.navigate([`/usuarios/edit/${idUsuario}`], { queryParams: { correo } });
   }
+
+    goBack(): void {
+    this.location.back();
+  }
+
+  logout(): void {
+    this.authService.logout();
+  }
+
 }

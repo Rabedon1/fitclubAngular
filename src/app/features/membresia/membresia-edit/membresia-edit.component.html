@@ -1,44 +1,59 @@
 <div class="bg-black min-h-screen flex items-center justify-center text-yellow-400 p-6">
   <div class="max-w-md w-full bg-gray-900 p-8 rounded-md shadow-lg">
     <h2 class="text-3xl font-bold mb-6 text-center">Editar Membresía</h2>
-    <form [formGroup]="editForm" (ngSubmit)="editarMembresia()" class="space-y-4">
+    <div *ngIf="loading" class="text-center">
+      <span class="animate-spin text-2xl">⌀</span> Cargando...
+    </div>
+    <form *ngIf="!loading" [formGroup]="editForm" (ngSubmit)="editarMembresia()" class="space-y-4">
       <div>
         <label for="nombreMembresia" class="block text-sm font-medium">Nombre</label>
-        <input id="nombreMembresia" formControlName="nombreMembresia" type="text" class="w-full p-2 rounded-md bg-gray-800 text-yellow-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400">
-        <div *ngIf="editForm.get('nombreMembresia')?.invalid && editForm.get('nombreMembresia')?.touched" class="text-red-500 text-sm mt-1">
-          El nombre es requerido y debe tener al menos 3 caracteres.
+        <input id="nombreMembresia" formControlName="nombreMembresia" type="text"
+               class="w-full p-2 rounded-md bg-gray-800 text-yellow-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+               maxlength="50">
+        <div *ngIf="editForm.get('nombreMembresia')?.invalid && editForm.get('nombreMembresia')?.touched"
+             class="text-red-500 text-sm mt-1">
+          El nombre es requerido, debe tener entre 3 y 50 caracteres.
         </div>
       </div>
       <div>
         <label for="descripcion" class="block text-sm font-medium">Descripción</label>
-        <textarea id="descripcion" formControlName="descripcion" class="w-full p-2 rounded-md bg-gray-800 text-yellow-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400"></textarea>
-        <div *ngIf="editForm.get('descripcion')?.invalid && editForm.get('descripcion')?.touched" class="text-red-500 text-sm mt-1">
-          La descripción es requerida y debe tener al menos 10 caracteres.
+        <textarea id="descripcion" formControlName="descripcion"
+                  class="w-full p-2 rounded-md bg-gray-800 text-yellow-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                  maxlength="200"></textarea>
+        <div *ngIf="editForm.get('descripcion')?.invalid && editForm.get('descripcion')?.touched"
+             class="text-red-500 text-sm mt-1">
+          La descripción es requerida, debe tener entre 10 y 200 caracteres.
         </div>
       </div>
       <div>
         <label for="precio" class="block text-sm font-medium">Precio</label>
-        <input id="precio" formControlName="precio" type="number" min="0" step="0.01" class="w-full p-2 rounded-md bg-gray-800 text-yellow-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400">
-        <div *ngIf="editForm.get('precio')?.invalid && editForm.get('precio')?.touched" class="text-red-500 text-sm mt-1">
-          El precio es requerido y debe ser un número positivo.
+        <input id="precio" formControlName="precio" type="number" min="0" step="0.01"
+               class="w-full p-2 rounded-md bg-gray-800 text-yellow-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+        <div *ngIf="editForm.get('precio')?.invalid && editForm.get('precio')?.touched"
+             class="text-red-500 text-sm mt-1">
+          El precio es requerido, debe ser un número positivo con hasta 2 decimales.
         </div>
       </div>
       <div>
         <label for="vigencia" class="block text-sm font-medium">Vigencia</label>
-        <select id="vigencia" formControlName="vigencia" class="w-full p-2 rounded-md bg-gray-800 text-yellow-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+        <select id="vigencia" formControlName="vigencia"
+                class="w-full p-2 rounded-md bg-gray-800 text-yellow-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400">
           <option value="" disabled>Seleccione una vigencia</option>
           <option *ngFor="let option of vigenciaOptions" [value]="option">{{ option }}</option>
         </select>
-        <div *ngIf="editForm.get('vigencia')?.invalid && editForm.get('vigencia')?.touched" class="text-red-500 text-sm mt-1">
+        <div *ngIf="editForm.get('vigencia')?.invalid && editForm.get('vigencia')?.touched"
+             class="text-red-500 text-sm mt-1">
           Seleccione una vigencia válida.
         </div>
       </div>
       <div class="flex space-x-4">
-        <button type="submit" [disabled]="loading" class="w-full bg-yellow-400 text-black font-semibold py-2 rounded-md hover:bg-yellow-600 flex items-center justify-center">
+        <button type="submit" [disabled]="loading"
+                class="w-full bg-yellow-400 text-black font-semibold py-2 rounded-md hover:bg-yellow-600 flex items-center justify-center">
           <span *ngIf="loading" class="mr-2 animate-spin">⌀</span>
           {{ loading ? 'Guardando...' : 'Guardar' }}
         </button>
-        <button type="button" (click)="cancelar()" class="w-full bg-gray-600 text-white font-semibold py-2 rounded-md hover:bg-gray-700">
+        <button type="button" (click)="cancelar()"
+                class="w-full bg-gray-600 text-white font-semibold py-2 rounded-md hover:bg-gray-700">
           Cancelar
         </button>
       </div>

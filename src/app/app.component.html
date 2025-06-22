@@ -1,5 +1,5 @@
-<app-navbar *ngIf="shouldShowNav()"></app-navbar>
+<app-navbar *ngIf="authService.getUserRole() === 'usuario'"></app-navbar>
 <main class="min-h-screen bg-black">
   <router-outlet></router-outlet>
 </main>
-<app-footer></app-footer>
+<app-footer *ngIf="authService.getUserRole() === 'usuario'"></app-footer>

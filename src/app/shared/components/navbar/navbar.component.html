@@ -11,9 +11,7 @@
       <!-- Menú de navegación (pantallas grandes) -->
       <div class="hidden md:flex space-x-4">
         <a routerLink="/home" routerLinkActive="text-yellow-300" [routerLinkActiveOptions]="{exact: true}" class="px-3 py-2 rounded-md text-sm font-medium hover:text-yellow-300 transition duration-200">Inicio</a>
-        <a routerLink="/usuarios/list" routerLinkActive="text-yellow-300" class="px-3 py-2 rounded-md text-sm font-medium hover:text-yellow-300 transition duration-200">Usuarios</a>
-        <a routerLink="/membresia" routerLinkActive="text-yellow-300" class="px-3 py-2 rounded-md text-sm font-medium hover:text-yellow-300 transition duration-200">Membresía</a>
-        <a routerLink="/historial" routerLinkActive="text-yellow-300" class="px-3 py-2 rounded-md text-sm font-medium hover:text-yellow-300 transition duration-200">Historial Membresias</a>
+
         <button (click)="logout()" class="px-3 py-2 rounded-md text-sm font-medium hover:text-yellow-300 transition duration-200">Cerrar Sesión</button>
       </div>
 

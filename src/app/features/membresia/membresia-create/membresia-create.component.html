@@ -1,60 +1,79 @@
-<div class="bg-black min-h-screen flex items-center justify-center text-yellow-400 p-6">
-  <div class="max-w-md w-full bg-gray-900 p-8 rounded-md shadow-lg">
+<!-- Header con botones -->
+<header class="w-full bg-white text-gray-800 shadow-md py-4 px-6 flex items-center justify-between">
+
+ <!-- Botón de regresar -->
+  <button (click)="goBack()" class="flex items-center gap-2 text-yellow-700 hover:text-yellow-600 transition">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+    <span>Volver</span>
+  </button>
+  <!-- Botón de cerrar sesión -->
+  <button
+    (click)="logout()"
+    class="bg-yellow-500 text-white font-semibold px-4 py-2 rounded-md hover:bg-yellow-300 transition"
+  >
+    Cerrar Sesión
+  </button>
+</header>
+
+<div class="min-h-screen bg-gray-100 flex items-center justify-center text-gray-800 p-6">
+  <div class="max-w-md w-full bg-white bg-opacity-90 p-8 rounded-md shadow-lg">
     <h2 class="text-3xl font-bold mb-6 text-center">Crear Membresía</h2>
     <form [formGroup]="createForm" (ngSubmit)="crearMembresia()" class="space-y-4">
       <div>
-        <label for="nombreMembresia" class="block text-sm font-medium">Nombre</label>
+        <label for="nombreMembresia" class="block text-sm font-medium text-gray-700">Nombre</label>
         <input id="nombreMembresia" formControlName="nombreMembresia" type="text"
-               class="w-full p-2 rounded-md bg-gray-800 text-yellow-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+               class="w-full p-2 rounded-md bg-gray-50 text-gray-800 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
                maxlength="50">
         <div *ngIf="createForm.get('nombreMembresia')?.invalid && createForm.get('nombreMembresia')?.touched"
-             class="text-red-500 text-sm mt-1">
+             class="text-red-600 text-sm mt-1">
           El nombre es requerido, debe tener entre 3 y 50 caracteres.
         </div>
       </div>
       <div>
-        <label for="descripcion" class="block text-sm font-medium">Descripción</label>
+        <label for="descripcion" class="block text-sm font-medium text-gray-700">Descripción</label>
         <textarea id="descripcion" formControlName="descripcion"
-                  class="w-full p-2 rounded-md bg-gray-800 text-yellow-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                  class="w-full p-2 rounded-md bg-gray-50 text-gray-800 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
                   maxlength="200"></textarea>
         <div *ngIf="createForm.get('descripcion')?.invalid && createForm.get('descripcion')?.touched"
-             class="text-red-500 text-sm mt-1">
+             class="text-red-600 text-sm mt-1">
           La descripción es requerida, debe tener entre 10 y 200 caracteres.
         </div>
       </div>
       <div>
-        <label for="precio" class="block text-sm font-medium">Precio</label>
+        <label for="precio" class="block text-sm font-medium text-gray-700">Precio</label>
         <input id="precio" formControlName="precio" type="number" min="0" step="0.01"
-               class="w-full p-2 rounded-md bg-gray-800 text-yellow-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+               class="w-full p-2 rounded-md bg-gray-50 text-gray-800 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200">
         <div *ngIf="createForm.get('precio')?.invalid && createForm.get('precio')?.touched"
-             class="text-red-500 text-sm mt-1">
+             class="text-red-600 text-sm mt-1">
           El precio es requerido, debe ser un número positivo con hasta 2 decimales.
         </div>
       </div>
       <div>
-        <label for="vigencia" class="block text-sm font-medium">Vigencia</label>
+        <label for="vigencia" class="block text-sm font-medium text-gray-700">Vigencia</label>
         <select id="vigencia" formControlName="vigencia"
-                class="w-full p-2 rounded-md bg-gray-800 text-yellow-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                class="w-full p-2 rounded-md bg-gray-50 text-gray-800 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200">
           <option value="" disabled>Seleccione una vigencia</option>
           <option *ngFor="let option of vigenciaOptions" [value]="option">{{ option }}</option>
         </select>
         <div *ngIf="createForm.get('vigencia')?.invalid && createForm.get('vigencia')?.touched"
-             class="text-red-500 text-sm mt-1">
+             class="text-red-600 text-sm mt-1">
           Seleccione una vigencia válida.
         </div>
       </div>
       <div class="flex space-x-4">
         <button type="submit" [disabled]="loading"
-                class="w-full bg-yellow-400 text-black font-semibold py-2 rounded-md hover:bg-yellow-600 flex items-center justify-center">
+                class="w-full bg-yellow-600 text-white font-semibold py-2 rounded-md hover:bg-yellow-700 disabled:bg-yellow-300 disabled:cursor-not-allowed transition duration-200 flex items-center justify-center">
           <span *ngIf="loading" class="mr-2 animate-spin">⌀</span>
           {{ loading ? 'Creando...' : 'Crear' }}
         </button>
         <button type="button" (click)="cancelar()"
-                class="w-full bg-gray-600 text-white font-semibold py-2 rounded-md hover:bg-gray-700">
+                class="w-full bg-gray-200 text-gray-800 font-semibold py-2 rounded-md hover:bg-gray-300 transition duration-200">
           Cancelar
         </button>
       </div>
     </form>
-    <p *ngIf="error" class="text-red-500 text-center mt-4">{{ error }}</p>
+    <p *ngIf="error" class="text-red-600 text-center mt-4">{{ error }}</p>
   </div>
 </div>

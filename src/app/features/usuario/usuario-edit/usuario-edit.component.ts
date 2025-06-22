@@ -3,6 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
 import { UpdateUserRequestDto, UsuarioDto } from '../../interfaces/usuario';
+import { AbstractControl, ValidationErrors } from '@angular/forms';
+import { AuthService } from '../../auth/service/auth.service';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-usuario-edit',
@@ -20,6 +24,8 @@ export class UsuarioEditComponent implements OnInit {
     private fb: FormBuilder,
     private usuarioService: UsuarioService,
     private route: ActivatedRoute,
+    private location: Location,
+    private authService: AuthService,
     private router: Router
   ) {
     this.id = +this.route.snapshot.paramMap.get('id')! || 0;
@@ -30,7 +36,6 @@ export class UsuarioEditComponent implements OnInit {
       correo: ['', [Validators.required, Validators.email]],
       telefono: ['', [Validators.required, Validators.pattern(/^\d{9,10}$/)]],
       edad: ['', [Validators.required, Validators.min(18), Validators.max(100)]],
-      cedula: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
       idRol: ['', [Validators.required, Validators.pattern(/^[1-2]$/)]]
     });
   }
@@ -109,7 +114,54 @@ export class UsuarioEditComponent implements OnInit {
     }
   }
 
-  cancelar(): void {
-    this.router.navigate(['/usuarios/list']);
+  cedulaEcuatorianaValidator(control: AbstractControl): { [key: string]: any } | null {
+  const cedula = control.value;
+  if (!cedula) return null;
+
+  if (!/^\d{10}$/.test(cedula)) {
+    return { formatoInvalido: true };
   }
+
+  const digitos = cedula.split('').map(Number);
+  const provincia = parseInt(cedula.substring(0, 2), 10);
+  if (provincia < 1 || provincia > 24) {
+    return { provinciaInvalida: true };
+  }
+
+  const tercerDigito = digitos[2];
+  if (tercerDigito >= 6) {
+    return { tipoInvalido: true };
+  }
+
+  let suma = 0;
+  for (let i = 0; i < 9; i++) {
+    let valor = digitos[i];
+    if (i % 2 === 0) {
+      valor *= 2;
+      if (valor > 9) valor -= 9;
+    }
+    suma += valor;
+  }
+
+  const digitoVerificador = (10 - (suma % 10)) % 10;
+  if (digitoVerificador !== digitos[9]) {
+    return { digitoVerificadorInvalido: true };
+  }
+
+  return null;
+}
+
+
+  cancelar(): void {
+    this.router.navigate(['/home-admin']);
+  }
+   goBack(): void {
+    this.location.back();
+  }
+
+  logout(): void {
+    this.authService.logout();
+  }
+
+
 }

@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MembresiaService } from '../../services/membresia.service';
 import { MembresiaDto } from '../../interfaces/membresia';
+import { Location } from '@angular/common';
+import { AuthService } from '../../auth/service/auth.service';
+
 
 @Component({
   selector: 'app-membresia-create',
@@ -19,7 +22,9 @@ export class MembresiaCreateComponent {
   constructor(
     private fb: FormBuilder,
     private membresiaService: MembresiaService,
-    private router: Router
+    private router: Router,
+    private location: Location,
+    private authService: AuthService
   ) {
     this.createForm = this.fb.group({
       nombreMembresia: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
@@ -44,7 +49,7 @@ export class MembresiaCreateComponent {
         next: (response) => {
           console.log('Membresía creada:', response);
           this.loading = false;
-          this.router.navigate(['/membresias/list']);
+          this.router.navigate(['/home-admin']);
         },
         error: (err) => {
           this.loading = false;
@@ -59,6 +64,16 @@ export class MembresiaCreateComponent {
   }
 
   cancelar(): void {
-    this.router.navigate(['/membresias/list']);
+    this.router.navigate(['/home-admin']);
   }
+
+      goBack(): void {
+    this.location.back();
+  }
+
+  logout(): void {
+    this.authService.logout();
+  }
+
+
 }
