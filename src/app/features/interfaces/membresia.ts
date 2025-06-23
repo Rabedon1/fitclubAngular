@@ -1,10 +1,11 @@
 export interface MembresiaDto {
-  idMembresia?: number;
+  id?: number; // ← Lo haces opcional
   nombreMembresia: string;
   descripcion: string;
   precio: number;
   vigencia: string;
 }
+
 
 export interface HistorialMembresiaDto {
   idUsuario: number;

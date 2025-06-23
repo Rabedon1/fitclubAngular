@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioDto } from '../../interfaces/usuario';
 import { UsuarioService } from '../../services/usuario.service';
-import { Router } from  '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '../../auth/service/auth.service';
 import { Location } from '@angular/common';
 
@@ -17,7 +17,7 @@ export class UsuarioListComponent implements OnInit {
   constructor(private usuarioService: UsuarioService,
     private router: Router,
     private location: Location,
-    private authService: AuthService) {}
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     console.log('Cargando lista de usuarios');
@@ -36,9 +36,15 @@ export class UsuarioListComponent implements OnInit {
     this.router.navigate([`/usuarios/edit/${idUsuario}`], { queryParams: { correo } });
   }
 
-    goBack(): void {
+  goBack(): void {
     this.location.back();
   }
+
+  asignarMembresia(idUsuario: number): void {
+    console.log('Redirigiendo a asignar membresía para usuario:', idUsuario);
+    this.router.navigate(['/usuarios/asignar-membresia', idUsuario]);
+  }
+
 
   logout(): void {
     this.authService.logout();

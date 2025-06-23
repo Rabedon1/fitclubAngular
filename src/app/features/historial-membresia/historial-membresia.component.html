@@ -1,44 +1,20 @@
-<div class="bg-black min-h-screen flex items-center justify-center text-yellow-400 p-6">
-  <div class="max-w-md w-full bg-gray-900 p-8 rounded-md shadow-lg">
-    <h2 class="text-3xl font-bold mb-6 text-center">Historial de Membresía</h2>
-
-    <!-- Formulario para registrar historial -->
-    <form [formGroup]="historialForm" (ngSubmit)="registrarHistorial()" class="space-y-4">
-      <div>
-        <label for="idMembresia" class="block text-sm font-medium">Membresía</label>
-        <input id="idMembresia" formControlName="idMembresia" type="number" class="w-full p-2 rounded-md bg-gray-800 text-yellow-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400">
-        <div *ngIf="historialForm.get('idMembresia')?.invalid && historialForm.get('idMembresia')?.touched" class="text-red-500 text-sm mt-1">
-          Seleccione una membresía válida.
-        </div>
-      </div>
-      <div>
-        <label for="valorPagado" class="block text-sm font-medium">Valor Pagado</label>
-        <input id="valorPagado" formControlName="valorPagado" type="number" min="0" step="0.01" class="w-full p-2 rounded-md bg-gray-800 text-yellow-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400">
-        <div *ngIf="historialForm.get('valorPagado')?.invalid && historialForm.get('valorPagado')?.touched" class="text-red-500 text-sm mt-1">
-          El valor pagado es requerido y debe ser un número positivo.
-        </div>
-      </div>
-      <div>
-        <label for="estado" class="block text-sm font-medium">Estado</label>
-        <input id="estado" formControlName="estado" type="checkbox" class="p-2 bg-gray-800 text-yellow-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400">
-      </div>
-      <button type="submit" [disabled]="loading" class="w-full bg-yellow-400 text-black font-semibold py-2 rounded-md hover:bg-yellow-600 flex items-center justify-center">
-        <span *ngIf="loading" class="mr-2 animate-spin">⌀</span>
-        {{ loading ? 'Registrando...' : 'Registrar' }}
-      </button>
-    </form>
-
-    <!-- Mostrar membresía activa -->
-    <div *ngIf="membresiaActiva" class="mt-8">
-      <h3 class="text-2xl font-bold mb-4">Membresía Activa</h3>
-      <p><strong>Nombre:</strong> {{ membresiaActiva.nombreMembresia }}</p>
-      <p><strong>Vigencia:</strong> {{ membresiaActiva.vigencia }}</p>
-      <p><strong>Fecha Inicio:</strong> {{ membresiaActiva.fechaInicio }}</p>
-      <p><strong>Fecha Fin:</strong> {{ membresiaActiva.fechaFin }}</p>
-      <p><strong>Valor Pagado:</strong> ${{ membresiaActiva.valorPagado }}</p>
-      <p><strong>Estado:</strong> {{ membresiaActiva.estado ? 'Activa' : 'Inactiva' }}</p>
-    </div>
-    <p *ngIf="!membresiaActiva && !loading" class="text-center mt-4">No hay membresía activa.</p>
-    <p *ngIf="error" class="text-red-500 text-center mt-4">{{ error }}</p>
+<form [formGroup]="form" (ngSubmit)="asignar()" class="max-w-md mx-auto space-y-4">
+  <div>
+    <label class="block mb-1">ID de Usuario</label>
+    <input type="number" formControlName="usuarioId" class="border p-2 w-full" />
   </div>
-</div>
+
+  <div>
+    <label class="block mb-1">Selecciona una Membresía</label>
+    <select formControlName="membresiaId" class="border p-2 w-full">
+      <option [value]="null">-- Selecciona --</option>
+      <option *ngFor="let m of membresias" [value]="m.id">
+        {{ m.nombreMembresia }} - ${{ m.precio }}
+      </option>
+    </select>
+  </div>
+
+  <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">
+    Asignar Membresía
+  </button>
+</form>

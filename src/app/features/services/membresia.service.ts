@@ -10,7 +10,7 @@ import { MembresiaDto } from '../interfaces/membresia';
 export class MembresiaService {
   private apiUrl = 'http://localhost:8080/api';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   crearMembresia(dto: MembresiaDto): Observable<MembresiaDto> {
     console.log('Creando membresía:', dto);
@@ -18,6 +18,10 @@ export class MembresiaService {
       tap(response => console.log('Respuesta del servidor:', response)),
       catchError(this.handleError)
     );
+  }
+
+  asignarMembresia(data: any) {
+    return this.http.post(`${this.apiUrl}/historial-membresias`, data);
   }
 
   editarMembresia(id: number, dto: MembresiaDto): Observable<MembresiaDto> {
@@ -34,6 +38,12 @@ export class MembresiaService {
       catchError(this.handleError)
     );
   }
+
+  obtenerTodas(): Observable<MembresiaDto[]> {
+    return this.http.get<MembresiaDto[]>(this.apiUrl);
+  }
+
+
 
   private handleError(error: HttpErrorResponse): Observable<never> {
     console.error('Error completo:', error);

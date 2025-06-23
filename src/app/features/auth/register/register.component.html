@@ -71,6 +71,7 @@
           <div *ngIf="registerForm.get('cedula')?.invalid && registerForm.get('cedula')?.touched" class="text-red-600 text-sm mt-1">
             <span *ngIf="registerForm.get('cedula')?.errors?.['required']">La cédula es obligatoria.</span>
             <span *ngIf="registerForm.get('cedula')?.errors?.['pattern']">Debe tener 10 dígitos.</span>
+            <span *ngIf="registerForm.get('cedula')?.errors?.['cedulaInvalida']">La cédula no es válida.</span>
           </div>
         </div>
 
@@ -86,8 +87,11 @@
             placeholder="Tus nombres"
           >
           <div *ngIf="registerForm.get('nombres')?.invalid && registerForm.get('nombres')?.touched" class="text-red-600 text-sm mt-1">
-            Los nombres son obligatorios (mínimo 2 caracteres).
+            <span *ngIf="registerForm.get('nombres')?.errors?.['required']">Los nombres son obligatorios.</span>
+            <span *ngIf="registerForm.get('nombres')?.errors?.['minlength']">Mínimo 2 caracteres.</span>
+            <span *ngIf="registerForm.get('nombres')?.errors?.['soloLetras']">Solo se permiten letras.</span>
           </div>
+
         </div>
 
         <!-- Apellidos -->
@@ -102,7 +106,9 @@
             placeholder="Tus apellidos"
           >
           <div *ngIf="registerForm.get('apellidos')?.invalid && registerForm.get('apellidos')?.touched" class="text-red-600 text-sm mt-1">
-            Los apellidos son obligatorios (mínimo 2 caracteres).
+            <span *ngIf="registerForm.get('apellidos')?.errors?.['required']">Los apellidos son obligatorios.</span>
+            <span *ngIf="registerForm.get('apellidos')?.errors?.['minlength']">Mínimo 2 caracteres.</span>
+            <span *ngIf="registerForm.get('apellidos')?.errors?.['soloLetras']">Solo se permiten letras.</span>
           </div>
         </div>
 
@@ -122,7 +128,7 @@
         </div>
 
         <!-- Fecha de Ingreso -->
-        <div>
+        <!-- <div>
           <label for="fechaIngreso" class="block text-sm font-medium text-gray-700 mb-1">Fecha de Ingreso</label>
           <input
             id="fechaIngreso"
@@ -134,10 +140,10 @@
           <div *ngIf="registerForm.get('fechaIngreso')?.invalid && registerForm.get('fechaIngreso')?.touched" class="text-red-600 text-sm mt-1">
             La fecha de ingreso es obligatoria.
           </div>
-        </div>
+        </div> -->
 
         <!-- Edad -->
-        <div>
+        <!-- <div>
           <label for="edad" class="block text-sm font-medium text-gray-700 mb-1">Edad</label>
           <input
             id="edad"
@@ -152,7 +158,7 @@
             <span *ngIf="registerForm.get('edad')?.errors?.['min']">Debes tener al menos 18 años.</span>
             <span *ngIf="registerForm.get('edad')?.errors?.['max']">La edad máxima es 100 años.</span>
           </div>
-        </div>
+        </div> -->
 
         <!-- Correo -->
         <div>

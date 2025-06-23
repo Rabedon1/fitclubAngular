@@ -4,8 +4,8 @@ export interface User {
   nombres: string;
   apellidos: string;
   fechaNacimiento: string;
-  fechaIngreso: string;
-  edad: number;
+  // fechaIngreso: string;
+  // edad: number;
   correo: string;
   telefono: string;
   contrasena: string;

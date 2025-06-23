@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 import { Location } from '@angular/common';
+import { cedulaEcuatorianaValidator, soloLetrasValidator } from './validador';
 
 
 @Component({
@@ -31,12 +32,12 @@ export class RegisterComponent {
   ) {
     this.registerForm = this.fb.group({
       idRol: ['', Validators.required],
-      cedula: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
-      nombres: ['', [Validators.required, Validators.minLength(2)]],
-      apellidos: ['', [Validators.required, Validators.minLength(2)]],
+      cedula: ['', [Validators.required, Validators.pattern(/^\d{10}$/), cedulaEcuatorianaValidator]],
+      nombres: ['', [Validators.required, Validators.minLength(2), soloLetrasValidator()]],
+      apellidos: ['', [Validators.required, Validators.minLength(2), soloLetrasValidator()]],
       fechaNacimiento: ['', Validators.required],
-      fechaIngreso: ['', Validators.required],
-      edad: ['', [Validators.required, Validators.min(18), Validators.max(100)]],
+      // fechaIngreso: ['', Validators.required],
+      // edad: ['', [Validators.required, Validators.min(18), Validators.max(100)]],
       correo: ['', [Validators.required, Validators.email]],
       telefono: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
       contrasena: ['', [Validators.required, Validators.minLength(6)]]
@@ -58,8 +59,8 @@ export class RegisterComponent {
       nombres: formValue.nombres,
       apellidos: formValue.apellidos,
       fechaNacimiento: formValue.fechaNacimiento,
-      fechaIngreso: formValue.fechaIngreso,
-      edad: formValue.edad,
+      // fechaIngreso: formValue.fechaIngreso,
+      // edad: formValue.edad,
       correo: formValue.correo,
       telefono: formValue.telefono,
       contrasena: formValue.contrasena
@@ -68,7 +69,7 @@ export class RegisterComponent {
     this.authService.register(user).subscribe({
       next: (response) => {
         this.message = { text: 'Registro realizado con éxito', type: 'success' };
-         setTimeout(() => this.router.navigate(['/home-admin']), 2000);
+        setTimeout(() => this.router.navigate(['/home-admin']), 2000);
         this.loading = false;
         this.registerForm.reset();
 
@@ -80,7 +81,7 @@ export class RegisterComponent {
       }
     });
   }
-    goBack(): void {
+  goBack(): void {
     this.location.back();
   }
 
