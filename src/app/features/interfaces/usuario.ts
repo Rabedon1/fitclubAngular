@@ -26,12 +26,13 @@ export interface UsuarioDto {
 
 export interface UpdateUserRequestDto {
     idUsuario: number;
-    correo: string;
+    //correo: string;
     nombres: string;
     apellidos: string;
     telefono: string;
-    edad: number;
-    cedula: string;
+    fechaNacimiento: Date;
+    //edad: number;
+    //cedula: string;
     idRol: number;
 
 }

@@ -19,8 +19,8 @@ export class RegisterComponent {
 
   // Lista de roles
   roles = [
-    { idRol: 1, nombre: 'Administrador' },
-    { idRol: 2, nombre: 'Usuario' }
+    { idRol: 1, nombre: 'ADMINISTRADOR' },
+    { idRol: 2, nombre: 'CLIENTE' }
   ];
 
   constructor(

@@ -50,7 +50,7 @@ export class LoginComponent {
         // Por defecto para usuario
         if (token) {
           const decoded: DecodedToken | null = this.authService.decodeToken(token);
-          if (decoded && decoded.rol === 'administrador') {
+          if (decoded && decoded.rol === 'ADMINISTRADOR') {
             console.log('Login con admin:', response);
             redirectUrl = '/home-admin';
 

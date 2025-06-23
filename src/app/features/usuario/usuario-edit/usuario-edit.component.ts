@@ -33,9 +33,10 @@ export class UsuarioEditComponent implements OnInit {
     this.editForm = this.fb.group({
       nombres: ['', [Validators.required, Validators.minLength(2)]],
       apellidos: ['', [Validators.required, Validators.minLength(2)]],
-      correo: ['', [Validators.required, Validators.email]],
+      //correo: ['', [Validators.required, Validators.email]],
       telefono: ['', [Validators.required, Validators.pattern(/^\d{9,10}$/)]],
-      edad: ['', [Validators.required, Validators.min(18), Validators.max(100)]],
+      //edad: ['', [Validators.required, Validators.min(18), Validators.max(100)]],
+      fechaNacimiento: ['', [Validators.required]],
       idRol: ['', [Validators.required, Validators.pattern(/^[1-2]$/)]]
     });
   }
@@ -88,10 +89,11 @@ export class UsuarioEditComponent implements OnInit {
         idUsuario: this.id,
         nombres: this.editForm.get('nombres')?.value,
         apellidos: this.editForm.get('apellidos')?.value,
-        correo: this.editForm.get('correo')?.value,
+        //correo: this.editForm.get('correo')?.value,
         telefono: this.editForm.get('telefono')?.value,
-        edad: +this.editForm.get('edad')?.value,
-        cedula: this.editForm.get('cedula')?.value,
+        //edad: +this.editForm.get('edad')?.value,
+        //cedula: this.editForm.get('cedula')?.value,
+        fechaNacimiento: this.editForm.get('fechaNacimiento')?.value,
         idRol: +this.editForm.get('idRol')?.value
       };
       console.log('Enviando solicitud PUT con datos:', request);

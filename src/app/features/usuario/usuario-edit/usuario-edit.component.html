@@ -1,32 +1,64 @@
-<div class="relative min-h-screen bg-gray-100 flex flex-col justify-center items-center p-6">
+<div
+  class="relative min-h-screen bg-gray-100 flex flex-col justify-center items-center p-6"
+>
   <!-- Contenedor del formulario con fondo más sólido y sombra suave -->
-  <div class="w-full max-w-lg bg-white bg-opacity-90 border border-gray-200 rounded-xl p-10 shadow-xl">
-    <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">Editar Usuario</h2>
-    <form *ngIf="editForm" [formGroup]="editForm" (ngSubmit)="actualizarUsuario()" class="space-y-6">
+  <div
+    class="w-full max-w-lg bg-white bg-opacity-90 border border-gray-200 rounded-xl p-10 shadow-xl"
+  >
+    <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">
+      Editar Usuario
+    </h2>
+    <form
+      *ngIf="editForm"
+      [formGroup]="editForm"
+      (ngSubmit)="actualizarUsuario()"
+      class="space-y-6"
+    >
       <!-- Nombres -->
       <div>
-        <label for="nombres" class="block text-sm font-medium text-gray-700">Nombres</label>
-        <input id="nombres" formControlName="nombres" type="text"
-               class="w-full p-3 rounded-lg bg-gray-50 text-gray-800 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-        <div *ngIf="editForm.get('nombres')?.invalid && editForm.get('nombres')?.touched"
-             class="text-red-600 text-sm mt-2">
+        <label for="nombres" class="block text-sm font-medium text-gray-700"
+          >Nombres</label
+        >
+        <input
+          id="nombres"
+          formControlName="nombres"
+          type="text"
+          class="w-full p-3 rounded-lg bg-gray-50 text-gray-800 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+        />
+        <div
+          *ngIf="
+            editForm.get('nombres')?.invalid && editForm.get('nombres')?.touched
+          "
+          class="text-red-600 text-sm mt-2"
+        >
           Los nombres son requeridos y deben tener al menos 2 caracteres.
         </div>
       </div>
 
       <!-- Apellidos -->
       <div>
-        <label for="apellidos" class="block text-sm font-medium text-gray-700">Apellidos</label>
-        <input id="apellidos" formControlName="apellidos" type="text"
-               class="w-full p-3 rounded-lg bg-gray-50 text-gray-800 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-        <div *ngIf="editForm.get('apellidos')?.invalid && editForm.get('apellidos')?.touched"
-             class="text-red-600 text-sm mt-2">
+        <label for="apellidos" class="block text-sm font-medium text-gray-700"
+          >Apellidos</label
+        >
+        <input
+          id="apellidos"
+          formControlName="apellidos"
+          type="text"
+          class="w-full p-3 rounded-lg bg-gray-50 text-gray-800 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+        />
+        <div
+          *ngIf="
+            editForm.get('apellidos')?.invalid &&
+            editForm.get('apellidos')?.touched
+          "
+          class="text-red-600 text-sm mt-2"
+        >
           Los apellidos son requeridos y deben tener al menos 2 caracteres.
         </div>
       </div>
 
       <!-- Correo -->
-      <div>
+      <!-- <div>
         <label for="correo" class="block text-sm font-medium text-gray-700">Correo</label>
         <input id="correo" formControlName="correo" type="email"
                class="w-full p-3 rounded-lg bg-gray-50 text-gray-800 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
@@ -34,21 +66,32 @@
              class="text-red-600 text-sm mt-2">
           Ingrese un correo válido.
         </div>
-      </div>
+      </div> -->
 
       <!-- Teléfono -->
       <div>
-        <label for="telefono" class="block text-sm font-medium text-gray-700">Teléfono</label>
-        <input id="telefono" formControlName="telefono" type="text"
-               class="w-full p-3 rounded-lg bg-gray-50 text-gray-800 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-        <div *ngIf="editForm.get('telefono')?.invalid && editForm.get('telefono')?.touched"
-             class="text-red-600 text-sm mt-2">
+        <label for="telefono" class="block text-sm font-medium text-gray-700"
+          >Teléfono</label
+        >
+        <input
+          id="telefono"
+          formControlName="telefono"
+          type="text"
+          class="w-full p-3 rounded-lg bg-gray-50 text-gray-800 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+        />
+        <div
+          *ngIf="
+            editForm.get('telefono')?.invalid &&
+            editForm.get('telefono')?.touched
+          "
+          class="text-red-600 text-sm mt-2"
+        >
           El teléfono debe tener 9-10 dígitos.
         </div>
       </div>
 
       <!-- Edad -->
-      <div>
+      <!-- <div>
         <label for="edad" class="block text-sm font-medium text-gray-700">Edad</label>
         <input id="edad" formControlName="edad" type="number"
                class="w-full p-3 rounded-lg bg-gray-50 text-gray-800 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
@@ -56,10 +99,10 @@
              class="text-red-600 text-sm mt-2">
           La edad debe estar entre 18 y 100 años.
         </div>
-      </div>
+      </div> -->
 
       <!-- Cédula -->
-      <div>
+      <!-- <div>
         <label for="cedula" class="block text-sm font-medium text-gray-700">Cédula</label>
         <input id="cedula" formControlName="cedula" type="text"
                class="w-full p-3 rounded-lg bg-gray-50 text-gray-800 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
@@ -67,30 +110,68 @@
              class="text-red-600 text-sm mt-2">
           La cédula debe tener exactamente 10 dígitos.
         </div>
+      </div> -->
+      <!-- Fecha de Nacimiento -->
+      <div>
+        <label
+          for="fechaNacimiento"
+          class="block text-sm font-medium text-gray-700"
+          >Fecha de Nacimiento</label
+        >
+        <input
+          id="fechaNacimiento"
+          formControlName="fechaNacimiento"
+          type="date"
+          class="w-full p-3 rounded-lg bg-gray-50 text-gray-800 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+        />
+        <div
+          *ngIf="
+            editForm.get('fechaNacimiento')?.invalid &&
+            editForm.get('fechaNacimiento')?.touched
+          "
+          class="text-red-600 text-sm mt-2"
+        >
+          Ingrese una fecha válida.
+        </div>
       </div>
 
       <!-- Rol -->
       <div>
-        <label for="idRol" class="block text-sm font-medium text-gray-700">Rol</label>
-        <select id="idRol" formControlName="idRol"
-                class="w-full p-3 rounded-lg bg-gray-50 text-gray-800 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+        <label for="idRol" class="block text-sm font-medium text-gray-700"
+          >Rol</label
+        >
+        <select
+          id="idRol"
+          formControlName="idRol"
+          class="w-full p-3 rounded-lg bg-gray-50 text-gray-800 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+        >
           <option value="1">Usuario</option>
           <option value="2">Administrador</option>
         </select>
-        <div *ngIf="editForm.get('idRol')?.invalid && editForm.get('idRol')?.touched"
-             class="text-red-600 text-sm mt-2">
+        <div
+          *ngIf="
+            editForm.get('idRol')?.invalid && editForm.get('idRol')?.touched
+          "
+          class="text-red-600 text-sm mt-2"
+        >
           Seleccione un rol válido (1 = Usuario, 2 = Administrador).
         </div>
       </div>
 
       <!-- Botones -->
       <div class="flex justify-end space-x-3">
-        <button type="button" (click)="cancelar()"
-                class="bg-gray-200 text-gray-800 font-semibold px-6 py-2 rounded-lg hover:bg-gray-300 transition duration-200">
+        <button
+          type="button"
+          (click)="cancelar()"
+          class="bg-gray-200 text-gray-800 font-semibold px-6 py-2 rounded-lg hover:bg-gray-300 transition duration-200"
+        >
           Cancelar
         </button>
-        <button type="submit" [disabled]="editForm.invalid"
-                class="bg-yellow-500 text-white font-semibold px-6 py-2 rounded-lg hover:bg-yellow-300 disabled:bg-blue-300 disabled:cursor-not-allowed transition duration-200">
+        <button
+          type="submit"
+          [disabled]="editForm.invalid"
+          class="bg-yellow-500 text-white font-semibold px-6 py-2 rounded-lg hover:bg-yellow-300 disabled:bg-blue-300 disabled:cursor-not-allowed transition duration-200"
+        >
           Guardar
         </button>
       </div>

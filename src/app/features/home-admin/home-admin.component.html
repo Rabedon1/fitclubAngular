@@ -1,7 +1,7 @@
 <!-- Header con botones -->
-<header class="w-full bg-white text-gray-800 shadow-md py-4 px-6 flex items-center justify-between">
-
-
+<header
+  class="w-full bg-white text-gray-800 shadow-md py-4 px-6 flex items-center justify-between"
+>
   <!-- Botón de cerrar sesión -->
   <button
     (click)="logout()"
@@ -14,7 +14,7 @@
 <!-- Hero Section -->
 <section
   class="relative min-h-[50vh] bg-cover bg-center flex items-center justify-center"
-  style="background-image: url('/images/admin-bg.jpg');"
+  style="background-image: url('/images/admin-bg.jpg')"
 >
   <!-- Overlay claro -->
   <div class="absolute inset-0 bg-white opacity-70"></div>
@@ -38,13 +38,17 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <!-- Acción 1: Crear Usuarios -->
 
-      <div class="bg-gray-300 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
+      <div
+        class="bg-gray-300 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+      >
         <img
           src="/images/progreso.jpg"
           alt="Gestionar Usuarios"
           class="w-full h-48 object-cover rounded-md mb-4"
-        >
-        <h3 class="text-xl font-semibold text-gray-800 mb-2">Registra Usuarios</h3>
+        />
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">
+          Registra Usuarios
+        </h3>
         <p class="text-gray-600 mb-4">
           Registra usuarios nuevos en el sistema.
         </p>
@@ -56,14 +60,17 @@
         </a>
       </div>
 
-
-      <div class="bg-gray-300 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
+      <div
+        class="bg-gray-300 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+      >
         <img
           src="/images/progreso.jpg"
           alt="Gestionar Usuarios"
           class="w-full h-48 object-cover rounded-md mb-4"
-        >
-        <h3 class="text-xl font-semibold text-gray-800 mb-2">Gestionar Usuarios</h3>
+        />
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">
+          Gestionar Usuarios
+        </h3>
         <p class="text-gray-600 mb-4">
           Administra la lista de usuarios registrados en el sistema.
         </p>
@@ -75,16 +82,20 @@
         </a>
       </div>
 
-       <!-- Acción 1: Gestionar Usuarios -->
-      <div class="bg-gray-300 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
+      <!-- Acción 1: Gestionar Usuarios -->
+      <div
+        class="bg-gray-300 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+      >
         <img
           src="/images/clases.jpg"
           alt="Gestionar Usuarios"
           class="w-full h-48 object-cover rounded-md mb-4"
-        >
-        <h3 class="text-xl font-semibold text-gray-800 mb-2">Gestionar Membresias</h3>
+        />
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">
+          Gestionar Membresias
+        </h3>
         <p class="text-gray-600 mb-4">
-         Ten un control total de las membresías activas y sus detalles.
+          Ten un control total de las membresías activas y sus detalles.
         </p>
         <a
           routerLink="/membresia"
@@ -94,20 +105,40 @@
         </a>
       </div>
 
-
-
+      <!-- Acción 1: Gestionar Usuarios -->
+      <div
+        class="bg-gray-300 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+      >
+        <img
+          src="/images/clases.jpg"
+          alt="Gestionar Usuarios"
+          class="w-full h-48 object-cover rounded-md mb-4"
+        />
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">
+          Registrar Clases
+        </h3>
+        <p class="text-gray-600 mb-4">
+          Ten un control total de las clases y sus detalles.
+        </p>
+        <a
+          routerLink="/evento"
+          class="inline-block bg-yellow-600 text-white font-semibold px-6 py-2 rounded-md hover:bg-yellow-500 transition transform hover:scale-105"
+        >
+          Crear Clases
+        </a>
+      </div>
 
       <!-- Acción 3: Estadísticas -->
-      <div class="bg-gray-300 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
+      <div
+        class="bg-gray-300 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+      >
         <img
           src="/images/entrenamiento_personalizado.jpg"
           alt="Estadísticas"
           class="w-full h-48 object-cover rounded-md mb-4"
-        >
+        />
         <h3 class="text-xl font-semibold text-gray-800 mb-2">Estadísticas</h3>
-        <p class="text-gray-600 mb-4">
-          Visualiza métricas clave del sistema.
-        </p>
+        <p class="text-gray-600 mb-4">Visualiza métricas clave del sistema.</p>
         <button
           disabled
           class="inline-block bg-gray-300 text-gray-500 font-semibold px-6 py-2 rounded-md cursor-not-allowed"
@@ -127,15 +158,21 @@
     </h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
       <div class="bg-[#f8f9fa] p-6 rounded-lg shadow-md">
-        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Usuarios Registrados</h3>
+        <h3 class="text-2xl font-semibold text-gray-800 mb-2">
+          Usuarios Registrados
+        </h3>
         <p class="text-4xl font-bold text-yellow-600">1,234</p>
       </div>
       <div class="bg-[#f8f9fa] p-6 rounded-lg shadow-md">
-        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Membresías Activas</h3>
+        <h3 class="text-2xl font-semibold text-gray-800 mb-2">
+          Membresías Activas
+        </h3>
         <p class="text-4xl font-bold text-yellow-600">567</p>
       </div>
       <div class="bg-[#f8f9fa] p-6 rounded-lg shadow-md">
-        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Ingresos Mensuales</h3>
+        <h3 class="text-2xl font-semibold text-gray-800 mb-2">
+          Ingresos Mensuales
+        </h3>
         <p class="text-4xl font-bold text-yellow-600">$12,345</p>
       </div>
     </div>
