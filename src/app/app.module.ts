@@ -9,6 +9,9 @@ import { ExploreComponent } from './features/explore/explore.component';
 import { ListaEventosComponent } from './lista-eventos/lista-eventos.component';
 import { CrearEventoComponent } from './crear-evento/crear-evento.component';
 import { MusculosComponent } from './musculos/musculos.component';
+import { CrearEjercicioComponent } from './crear-ejercicio/crear-ejercicio.component';
+import { ListarEjercicioComponent } from './listar-ejercicio/listar-ejercicio.component';
+import { DetalleEjercicioComponent } from './detalle-ejercicio/detalle-ejercicio.component';
 
 
 
@@ -16,7 +19,6 @@ import { MusculosComponent } from './musculos/musculos.component';
 @NgModule({
   declarations: [
     AppComponent,
-
 
   ],
   imports: [

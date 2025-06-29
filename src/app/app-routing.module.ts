@@ -16,6 +16,9 @@ const routes: Routes = [
   { path: 'usuarios/asignar-membresia/:idUsuario', canActivate: [AuthGuard], loadChildren: () => import('./features/historial-membresia/historial-membresias.module').then(m => m.HistorialMembresiasModule) },
   { path: 'forbidden', loadChildren: () => import('./features/forbidden/forbidden.module').then(m => m.ForbiddenModule) },
   { path: 'musculos', canActivate: [AuthGuard], data: { role: 'ADMINISTRADOR' }, loadChildren: () => import('./musculos/musculos.module').then(m => m.MusculosModule) },
+  { path: 'crearEjercicio', canActivate: [AuthGuard], data: { role: 'ADMINISTRADOR' }, loadChildren: () => import('./crear-ejercicio/crear-ejercicio.module').then(m => m.CrearEjercicioModule) },
+  { path: 'ejercicios', canActivate: [AuthGuard], loadChildren: () => import('./listar-ejercicio/listar-ejercicio.module').then(m => m.ListarEjercicioModule) },
+  { path: 'ejercicio/:id', canActivate: [AuthGuard], loadChildren: () => import('./detalle-ejercicio/detaller-ejercicio.module').then(m => m.DetalleEjercicioModule) },
 /*   {path: 'historial-membresia', loadChildren: () => import('./features/historial-membresia/historial-membresias.module').then(m => m.HistorialMembresiasModule) },
  */  { path: '**', redirectTo: '/login' }
 ];
