@@ -8,6 +8,7 @@ import { NavComponent } from './shared/components/navbar/navbar.component';
 import { ExploreComponent } from './features/explore/explore.component';
 import { ListaEventosComponent } from './lista-eventos/lista-eventos.component';
 import { CrearEventoComponent } from './crear-evento/crear-evento.component';
+import { MusculosComponent } from './musculos/musculos.component';
 
 
 

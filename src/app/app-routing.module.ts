@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'home-admin', canActivate: [AuthGuard], data: { role: 'ADMINISTRADOR' }, loadChildren: () => import('./features/home-admin/home-admin.module').then(m => m.HomeAdminModule) },
   { path: 'usuarios/asignar-membresia/:idUsuario', canActivate: [AuthGuard], loadChildren: () => import('./features/historial-membresia/historial-membresias.module').then(m => m.HistorialMembresiasModule) },
   { path: 'forbidden', loadChildren: () => import('./features/forbidden/forbidden.module').then(m => m.ForbiddenModule) },
+  { path: 'musculos', canActivate: [AuthGuard], data: { role: 'ADMINISTRADOR' }, loadChildren: () => import('./musculos/musculos.module').then(m => m.MusculosModule) },
 /*   {path: 'historial-membresia', loadChildren: () => import('./features/historial-membresia/historial-membresias.module').then(m => m.HistorialMembresiasModule) },
  */  { path: '**', redirectTo: '/login' }
 ];
