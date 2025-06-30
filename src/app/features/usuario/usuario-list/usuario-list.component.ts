@@ -49,5 +49,9 @@ export class UsuarioListComponent implements OnInit {
   logout(): void {
     this.authService.logout();
   }
+  cancelar(): void {
+    console.log('Navegando a home-admin');
+    this.router.navigate(['/home-admin']);
+  }
 
 }
