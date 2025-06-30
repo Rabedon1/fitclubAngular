@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Musculo } from '../features/interfaces/musculo';
 import { MusculoService } from '../features/services/musculo.service';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-musculos',
   standalone: false,
@@ -16,7 +17,7 @@ export class MusculosComponent implements OnInit {
   error: string = '';
 
   constructor(
-    private musculoService: MusculoService,
+    private musculoService: MusculoService,private router: Router,
   ) { }
 
   ngOnInit() {
@@ -43,6 +44,10 @@ export class MusculosComponent implements OnInit {
     } else {
       this.error = 'El nombre no puede estar vacío';
     }
+  }
+
+  cancelar(): void {
+    this.router.navigate(['/home-admin']);
   }
 
 }

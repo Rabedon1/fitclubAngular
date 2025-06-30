@@ -88,4 +88,8 @@ export class CrearRutinasComponent implements OnInit {
       error: (err) => alert('Error al crear rutina: ' + err.message)
     });
   }
+
+  cancelar(): void {
+    this.router.navigate(['/home-admin']);
+  }
 }

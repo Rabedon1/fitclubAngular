@@ -54,4 +54,7 @@ export class ListarEjercicioComponent implements OnInit {
   irAFormulario() {
     this.router.navigate(['/crearEjercicio']);
   }
+  cancelar(): void {
+    this.router.navigate(['/home-admin']);
+  }
 }

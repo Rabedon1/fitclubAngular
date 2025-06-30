@@ -1,38 +1,51 @@
-<div class="max-w-md mx-auto mt-6 p-4 bg-white rounded shadow">
-  <h2 class="text-xl font-semibold mb-4">Registrar músculo</h2>
-  
-  <div class="flex items-center gap-2 mb-4">
-    <input
-      type="text"
-      [(ngModel)]="nombre"
-      placeholder="Nombre del músculo"
-      class="flex-1 px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-    />
-    <button
-      (click)="registrarMusculo()"
-      class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
-    >
-      Registrar
-    </button>
+<body class="min-h-screen bg-white text-gray-800 font-sans">
+
+  <div class="max-w-xl mx-auto mt-10 bg-white p-8 rounded-xl shadow-lg">
+    <h2 class="text-2xl font-bold text-yellow-800 mb-6 text-center">Registrar Músculo</h2>
+
+    <div class="flex flex-col sm:flex-row items-stretch gap-4">
+      <input
+        type="text"
+        [(ngModel)]="nombre"
+        placeholder="Nombre del músculo"
+        class="flex-1 px-4 py-2 border border-gray-300 bg-gray-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+      />
+      <button
+        (click)="registrarMusculo()"
+        class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-6 py-2 rounded-lg transition"
+      >
+        Registrar
+      </button>
+      <button type="button" (click)="cancelar()"
+                class="w-full bg-gray-200 text-gray-800 font-semibold py-2 rounded-md hover:bg-gray-300 transition duration-200">
+          Cancelar
+        </button>
+    </div>
+
+    <div *ngIf="error" class="mt-4 text-sm text-red-600">
+      {{ error }}
+    </div>
   </div>
 
-  <div *ngIf="error" class="text-red-600">{{ error }}</div>
-</div>
-<div class="max-w-4xl mx-auto mt-8 p-4 bg-white rounded shadow">
-  <h2 class="text-xl font-semibold mb-4">Lista de músculos</h2>
-  
-  <table class="w-full border border-gray-300 rounded overflow-hidden">
-    <thead class="bg-gray-100 text-left">
-      <tr>
-        <th class="p-2 border-b">ID</th>
-        <th class="p-2 border-b">Nombre</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let musculo of musculos" class="hover:bg-gray-50">
-        <td class="p-2 border-b">{{ musculo.id }}</td>
-        <td class="p-2 border-b">{{ musculo.nombre }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <div class="max-w-5xl mx-auto mt-10 bg-white p-8 rounded-xl shadow-lg">
+    <h2 class="text-2xl font-bold text-yellow-800 mb-6 text-center">Lista de Músculos Registrados</h2>
+
+    <div class="overflow-x-auto rounded-lg border border-gray-200">
+      <table class="min-w-full text-sm text-left text-gray-700">
+        <thead class="bg-gray-100 text-gray-600 uppercase text-xs">
+          <tr>
+            <th class="px-4 py-3 border-b">ID</th>
+            <th class="px-4 py-3 border-b">Nombre</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let musculo of musculos" class="hover:bg-yellow-50 transition">
+            <td class="px-4 py-3 border-b">{{ musculo.id }}</td>
+            <td class="px-4 py-3 border-b">{{ musculo.nombre }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</body>

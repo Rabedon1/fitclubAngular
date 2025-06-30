@@ -94,4 +94,8 @@ export class ListarRutinasComponent {
   verDetalle(id: number) {
     this.router.navigate(['/rutina', id]);
   }
+
+  cancelar(): void {
+    this.router.navigate(['/home-admin']);
+  }
 }

@@ -17,7 +17,7 @@ export class AuthService {
     return this.http.post<LoginResponse>(`${this.apiUrl}/login`, credentials).pipe(
       tap((response) => {
         if (response.token) {
-          console.log('Login exitoso, guardando token:', response.token);
+         // console.log('Login exitoso, guardando token:', response.token);
           localStorage.setItem('token', response.token);
         } else {
           console.error('Login fallido, no se recibió token');
@@ -37,14 +37,14 @@ export class AuthService {
 
   // Guardar el token
   saveToken(token: string): void {
-    console.log('Guardando token:', token);
+   // console.log('Guardando token:', token);
     localStorage.setItem('token', token);
   }
 
   // Obtener el token
   getToken(): string | null {
     const token = localStorage.getItem('token');
-    console.log('getToken: Token recuperado:', token ? 'Presente' : 'Ausente');
+   // console.log('getToken: Token recuperado:', token ? 'Presente' : 'Ausente');
     return token;
   }
 
@@ -59,7 +59,7 @@ export class AuthService {
         exp: payload.exp
       };
     } catch (e) {
-      console.error('Error decodificando token:', e);
+     // console.error('Error decodificando token:', e);
       return null;
     }
   }
@@ -68,16 +68,16 @@ export class AuthService {
   isAuthenticated(): boolean {
     const token = this.getToken();
     if (!token) {
-      console.log('isAuthenticated: No se encontró token');
+     // console.log('isAuthenticated: No se encontró token');
       return false;
     }
     const decoded = this.decodeToken(token);
     if (!decoded) {
-      console.log('isAuthenticated: Token inválido');
+      //console.log('isAuthenticated: Token inválido');
       return false;
     }
     const isNotExpired = decoded.exp * 1000 > Date.now();
-    console.log('isAuthenticated: Token encontrado, no expirado:', isNotExpired);
+   // console.log('isAuthenticated: Token encontrado, no expirado:', isNotExpired);
     return isNotExpired;
   }
 
@@ -85,22 +85,22 @@ export class AuthService {
   getUserRole(): string | null {
     const token = this.getToken();
     if (!token) {
-      console.log('getUserRole: No hay token');
+     // console.log('getUserRole: No hay token');
       return null;
     }
     const decoded = this.decodeToken(token);
     if (decoded) {
       const role = decoded.rol || null;
-      console.log('getUserRole: Rol decodificado:', role);
+      //console.log('getUserRole: Rol decodificado:', role);
       return role;
     }
-    console.log('getUserRole: Error al decodificar token');
+    //console.log('getUserRole: Error al decodificar token');
     return null;
   }
 
   // Cerrar sesión
   logout(): void {
-    console.log('Cerrando sesión, eliminando token');
+   // console.log('Cerrando sesión, eliminando token');
     localStorage.removeItem('token');
     this.router.navigate(['auth/login']);
   }

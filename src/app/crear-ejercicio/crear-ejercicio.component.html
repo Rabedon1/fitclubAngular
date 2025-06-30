@@ -1,27 +1,73 @@
-<div class="max-w-xl mx-auto p-4 bg-white shadow rounded">
-  <h2 class="text-2xl font-bold mb-4">Crear Ejercicio</h2>
+<body class="min-h-screen bg-white text-gray-800 font-sans">
 
-  <input [(ngModel)]="nombre" type="text" placeholder="Nombre"
-    class="w-full mb-3 px-4 py-2 border rounded" />
+  <!-- Botón de Volver -->
+  <button
+    (click)="cancelar()"
+    class="fixed top-4 left-4 z-50 flex items-center gap-2 bg-white text-yellow-700 hover:text-yellow-600 px-4 py-2 rounded-lg shadow transition"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+      stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+    <span class="font-medium">Volver</span>
+  </button>
 
-  <textarea [(ngModel)]="descripcion" placeholder="Descripción"
-    class="w-full mb-3 px-4 py-2 border rounded"></textarea>
+  <!-- Contenido principal -->
+  <div class="max-w-xl mx-auto p-6 pt-20">
+    <div class="bg-white rounded-xl shadow-lg p-6">
 
-  <label class="block mb-2 font-semibold">Seleccionar Músculos:</label>
-  <div class="grid grid-cols-2 gap-2 mb-3">
-    <div *ngFor="let m of musculosDisponibles">
-      <label class="inline-flex items-center">
-        <input type="checkbox" [value]="m.id" (change)="toggleMusculo(m.id)" />
-        <span class="ml-2">{{ m.nombre }}</span>
-      </label>
+      <h2 class="text-2xl font-bold text-yellow-800 mb-6 text-center">Crear Ejercicio</h2>
+
+      <!-- Nombre -->
+      <input
+        [(ngModel)]="nombre"
+        type="text"
+        placeholder="Nombre"
+        class="w-full mb-4 p-3 border border-gray-300 bg-gray-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+      />
+
+      <!-- Descripción -->
+      <textarea
+        [(ngModel)]="descripcion"
+        placeholder="Descripción"
+        class="w-full mb-4 p-3 border border-gray-300 bg-gray-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+      ></textarea>
+
+      <!-- Músculos -->
+      <label class="block text-sm font-medium text-yellow-700 mb-2">Seleccionar Músculos:</label>
+      <div class="grid grid-cols-2 gap-2 mb-4">
+        <div *ngFor="let m of musculosDisponibles">
+          <label class="inline-flex items-center text-gray-700">
+            <input
+              type="checkbox"
+              [value]="m.id"
+              (change)="toggleMusculo(m.id)"
+              class="accent-yellow-500"
+            />
+            <span class="ml-2">{{ m.nombre }}</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Imagen -->
+      <input
+        type="file"
+        (change)="onFileSelected($event)"
+        class="mb-4 w-full text-sm text-gray-600"
+      />
+
+      <!-- Botón -->
+      <button
+        (click)="registrar()"
+        class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 rounded-lg shadow transition"
+      >
+        Registrar
+      </button>
+
+      <!-- Error -->
+      <p *ngIf="error" class="text-red-600 text-sm mt-3 text-center">{{ error }}</p>
+
     </div>
   </div>
 
-  <input type="file" (change)="onFileSelected($event)" class="mb-3" />
-
-  <button (click)="registrar()" class="bg-green-600 text-white px-4 py-2 w-full rounded hover:bg-green-700">
-    Registrar
-  </button>
-
-  <p *ngIf="error" class="text-red-600 mt-2">{{ error }}</p>
-</div>
+</body>

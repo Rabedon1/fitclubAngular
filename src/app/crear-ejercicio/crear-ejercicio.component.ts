@@ -83,4 +83,7 @@ export class CrearEjercicioComponent implements OnInit {
       error: (err) => this.error = err.message
     });
   }
+  cancelar(): void {
+    this.router.navigate(['/home-admin']);
+  }
 }

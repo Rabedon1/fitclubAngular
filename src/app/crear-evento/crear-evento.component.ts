@@ -36,4 +36,7 @@ export class CrearEventoComponent {
         alert('Error al crear evento: ' + (err.error?.message || err.message)),
     });
   }
+  cancelar(): void {
+    this.router.navigate(['/home-admin']);
+  }
 }

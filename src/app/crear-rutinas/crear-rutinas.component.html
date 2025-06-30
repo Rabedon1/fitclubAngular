@@ -1,59 +1,116 @@
-<div class="max-w-4xl mx-auto p-6 bg-white shadow rounded grid grid-cols-1 md:grid-cols-2 gap-6">
-  <div>
-    <h2 class="text-2xl font-bold mb-4">Crear Rutina</h2>
+<body class="min-h-screen bg-white text-gray-800 font-sans">
 
-    <input [(ngModel)]="nombre" placeholder="Nombre" class="w-full p-2 border rounded mb-2" />
-    <textarea [(ngModel)]="descripcion" placeholder="Descripción" class="w-full p-2 border rounded mb-4"></textarea>
+  <!-- Botón de Volver -->
+  <button
+    (click)="cancelar()"
+    class="fixed top-4 left-4 z-50 flex items-center gap-2 bg-white text-yellow-700 hover:text-yellow-600 px-4 py-2 rounded-lg shadow transition"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+      stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+    <span class="font-medium">Volver</span>
+  </button>
 
-    <button
-      (click)="crearRutina()"
-      class="mt-4 w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700"
-    >
-      Crear Rutina
-    </button>
-  </div>
+  <!-- Contenido principal -->
+  <div class="max-w-6xl mx-auto p-6 pt-20">
 
-  <div>
-    <h3 class="text-xl font-semibold mb-2">Buscar Ejercicios</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white p-6 rounded-xl shadow-lg">
 
-    <input [(ngModel)]="filtroNombre" (input)="filtrarEjercicios()" placeholder="Buscar por nombre" class="w-full p-2 border rounded mb-2" />
+      <!-- Formulario de Rutina -->
+      <div>
+        <h2 class="text-2xl font-bold text-yellow-800 mb-4">Crear Rutina</h2>
 
-    <select [(ngModel)]="filtroMusculo" (change)="filtrarEjercicios()" class="w-full p-2 border rounded mb-4">
-      <option value="">-- Filtrar por músculo --</option>
-      <option *ngFor="let musculo of musculos" [value]="musculo">{{ musculo }}</option>
-    </select>
+        <input
+          [(ngModel)]="nombre"
+          placeholder="Nombre"
+          class="w-full p-3 border border-gray-300 bg-gray-50 rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+        />
 
-    <div class="space-y-4 max-h-80 overflow-y-auto pr-2">
-      <div *ngFor="let ejercicio of ejerciciosFiltrados" class="border p-3 rounded shadow-sm">
-        <h4 class="font-bold text-lg">{{ ejercicio.nombre }}</h4>
-<p class="text-sm text-gray-600 mb-1">Músculo(s): {{ ejercicio.musculos.join(', ') }}</p>
-        <p class="text-sm mb-2">{{ ejercicio.descripcion }}</p>
+        <textarea
+          [(ngModel)]="descripcion"
+          placeholder="Descripción"
+          class="w-full p-3 border border-gray-300 bg-gray-50 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+        ></textarea>
+
         <button
-          (click)="agregarEjercicio(ejercicio.id)"
-          class="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700"
+          (click)="crearRutina()"
+          class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 rounded-lg shadow transition"
         >
-          Agregar
+          Crear Rutina
         </button>
+      </div>
+
+      <!-- Filtro y Ejercicios -->
+      <div>
+        <h3 class="text-xl font-semibold text-yellow-800 mb-3">Buscar Ejercicios</h3>
+
+        <input
+          [(ngModel)]="filtroNombre"
+          (input)="filtrarEjercicios()"
+          placeholder="Buscar por nombre"
+          class="w-full p-3 border border-gray-300 bg-gray-50 rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+        />
+
+        <select
+          [(ngModel)]="filtroMusculo"
+          (change)="filtrarEjercicios()"
+          class="w-full p-3 border border-gray-300 bg-gray-50 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+        >
+          <option value="">-- Filtrar por músculo --</option>
+          <option *ngFor="let musculo of musculos" [value]="musculo">{{ musculo }}</option>
+        </select>
+
+        <div class="space-y-4 max-h-80 overflow-y-auto pr-1">
+          <div *ngFor="let ejercicio of ejerciciosFiltrados" class="border border-gray-200 p-4 rounded-lg shadow-sm bg-white">
+            <h4 class="font-bold text-lg text-gray-800">{{ ejercicio.nombre }}</h4>
+            <p class="text-sm text-gray-600 mb-1">Músculo(s): {{ ejercicio.musculos.join(', ') }}</p>
+            <p class="text-sm text-gray-700 mb-2">{{ ejercicio.descripcion }}</p>
+            <button
+              (click)="agregarEjercicio(ejercicio.id)"
+              class="bg-green-500 hover:bg-green-600 text-white px-4 py-1 rounded-md transition"
+            >
+              Agregar
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ejercicios seleccionados -->
+      <div class="md:col-span-2 mt-8">
+        <h3 class="text-xl font-semibold text-yellow-800 mb-3">Ejercicios Seleccionados</h3>
+
+        <div *ngIf="ejerciciosSeleccionados.length > 0" class="space-y-4">
+          <div *ngFor="let e of ejerciciosSeleccionados" class="flex flex-wrap md:flex-nowrap items-center gap-4 border-b pb-3">
+            <p class="w-48 font-medium text-gray-700">{{ getNombreEjercicio(e.ejercicioId) }}</p>
+
+            <input
+              [(ngModel)]="e.series"
+              type="number"
+              min="1"
+              class="w-24 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-500"
+              placeholder="Series"
+            />
+            <input
+              [(ngModel)]="e.repeticiones"
+              type="number"
+              min="1"
+              class="w-24 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-500"
+              placeholder="Reps"
+            />
+            <button
+              (click)="eliminarEjercicio(e.ejercicioId)"
+              class="text-sm text-red-600 hover:underline"
+            >
+              Eliminar
+            </button>
+          </div>
+        </div>
+
+        <p *ngIf="ejerciciosSeleccionados.length === 0" class="text-gray-500 text-sm">
+          No hay ejercicios seleccionados.
+        </p>
       </div>
     </div>
   </div>
-
-  <div class="md:col-span-2">
-    <h3 class="text-xl font-semibold mb-2">Ejercicios Seleccionados</h3>
-
-    <div *ngIf="ejerciciosSeleccionados.length > 0" class="space-y-4">
-      <div *ngFor="let e of ejerciciosSeleccionados" class="flex flex-wrap md:flex-nowrap items-center gap-4 border-b pb-2">
-        <p class="w-40 font-medium">{{ getNombreEjercicio(e.ejercicioId) }}</p>
-        <input [(ngModel)]="e.series" type="number" min="1" class="w-24 p-1 border rounded" placeholder="Series" />
-        <input [(ngModel)]="e.repeticiones" type="number" min="1" class="w-24 p-1 border rounded" placeholder="Reps" />
-        <button
-          (click)="eliminarEjercicio(e.ejercicioId)"
-          class="text-sm text-red-600 hover:underline"
-        >
-          Eliminar
-        </button>
-      </div>
-    </div>
-    <p *ngIf="ejerciciosSeleccionados.length === 0" class="text-gray-500 text-sm">No hay ejercicios seleccionados.</p>
-  </div>
-</div>
+</body>
