@@ -20,7 +20,7 @@ export class MembresiaService {
     );
   }
 
-  asignarMembresia(data: any) {
+  asignarMembresiaUsuario(data: any) {
     return this.http.post(`${this.apiUrl}/historial-membresias`, data);
   }
 
@@ -39,9 +39,11 @@ export class MembresiaService {
     );
   }
 
-  obtenerTodas(): Observable<MembresiaDto[]> {
-    return this.http.get<MembresiaDto[]>(this.apiUrl);
+  // Obtener todas las membresías disponibles
+  obtenerTodas(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/membresias`);
   }
+
 
 
 

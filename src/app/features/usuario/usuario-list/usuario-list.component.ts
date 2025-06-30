@@ -42,7 +42,7 @@ export class UsuarioListComponent implements OnInit {
 
   asignarMembresia(idUsuario: number): void {
     console.log('Redirigiendo a asignar membresía para usuario:', idUsuario);
-    this.router.navigate(['/usuarios/asignar-membresia', idUsuario]);
+    this.router.navigate(['/usuarios/membresia/asignar', idUsuario]);
   }
 
 

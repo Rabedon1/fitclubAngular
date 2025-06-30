@@ -13,7 +13,6 @@ const routes: Routes = [
   { path: 'usuarios', canActivate: [AuthGuard], data: { role: 'ADMINISTRADOR' }, loadChildren: () => import('./features/usuario/usuario.module').then(m => m.UsuarioModule) },
   { path: 'membresia', canActivate: [AuthGuard], data: { role: 'ADMINISTRADOR' }, loadChildren: () => import('./features/membresia/membresia.module').then(m => m.MembresiaCreateModule) },
   { path: 'home-admin', canActivate: [AuthGuard], data: { role: 'ADMINISTRADOR' }, loadChildren: () => import('./features/home-admin/home-admin.module').then(m => m.HomeAdminModule) },
-  { path: 'usuarios/asignar-membresia/:idUsuario', canActivate: [AuthGuard], loadChildren: () => import('./features/historial-membresia/historial-membresias.module').then(m => m.HistorialMembresiasModule) },
   { path: 'forbidden', loadChildren: () => import('./features/forbidden/forbidden.module').then(m => m.ForbiddenModule) },
   { path: 'musculos', canActivate: [AuthGuard], data: { role: 'ADMINISTRADOR' }, loadChildren: () => import('./musculos/musculos.module').then(m => m.MusculosModule) },
   { path: 'crearEjercicio', canActivate: [AuthGuard], data: { role: 'ADMINISTRADOR' }, loadChildren: () => import('./crear-ejercicio/crear-ejercicio.module').then(m => m.CrearEjercicioModule) },
