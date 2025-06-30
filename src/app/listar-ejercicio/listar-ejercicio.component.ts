@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Ejercicio } from '../features/interfaces/ejercicio';
 import { EjercicioService } from '../features/services/ejercicio.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../features/auth/service/auth.service';
 
 @Component({
   selector: 'app-listar-ejercicio',
@@ -11,13 +12,18 @@ import { Router } from '@angular/router';
 })
 export class ListarEjercicioComponent implements OnInit {
   ejercicios: Ejercicio[] = [];
+  rol: string | null = null;
 
-  constructor(private ejercicioService: EjercicioService, private router: Router) { }
+
+  constructor(private authService: AuthService, private ejercicioService: EjercicioService, private router: Router) { }
 
   ngOnInit(): void {
+    this.rol = this.authService.getUserRole();
+
     this.ejercicioService.obtenerEjercicios().subscribe({
       next: (data) => this.ejercicios = data
     });
+
   }
 
   verDetalle(id: number) {

@@ -12,6 +12,10 @@ import { MusculosComponent } from './musculos/musculos.component';
 import { CrearEjercicioComponent } from './crear-ejercicio/crear-ejercicio.component';
 import { ListarEjercicioComponent } from './listar-ejercicio/listar-ejercicio.component';
 import { DetalleEjercicioComponent } from './detalle-ejercicio/detalle-ejercicio.component';
+import { ListarRutinasComponent } from './listar-rutinas/listar-rutinas.component';
+import { DetalleRutinasComponent } from './detalle-rutinas/detalle-rutinas.component';
+import { CrearRutinasComponent } from './crear-rutinas/crear-rutinas.component';
+import { BodyMapComponent } from './body-map/body-map.component';
 
 
 

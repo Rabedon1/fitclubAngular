@@ -24,7 +24,7 @@ export class CrearEjercicioComponent implements OnInit {
     private ejercicioService: EjercicioService,
     private musculoService: MusculoService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.musculoService.obtenerMusculos().subscribe({
@@ -33,8 +33,20 @@ export class CrearEjercicioComponent implements OnInit {
   }
 
   onFileSelected(event: any) {
-    this.gif = event.target.files[0];
+    const file: File = event.target.files[0];
+
+    if (!file) return;
+
+    if (file.type !== 'image/gif') {
+      this.error = 'El archivo debe ser un GIF.';
+      this.gif = undefined!;
+      return;
+    }
+
+    this.error = '';
+    this.gif = file;
   }
+
 
   toggleMusculo(id: number) {
     if (this.musculoSeleccionados.includes(id)) {
@@ -45,6 +57,21 @@ export class CrearEjercicioComponent implements OnInit {
   }
 
   registrar() {
+    this.error = '';
+    if (!this.nombre.trim() || !this.descripcion.trim()) {
+      this.error = 'Todos los campos de texto son obligatorios.';
+      return;
+    }
+
+    if (!this.gif) {
+      this.error = 'Debes seleccionar un archivo GIF.';
+      return;
+    }
+
+    if (this.musculoSeleccionados.length === 0) {
+      this.error = 'Debes seleccionar al menos un músculo.';
+      return;
+    }
     const formData = new FormData();
     formData.append('nombre', this.nombre);
     formData.append('descripcion', this.descripcion);

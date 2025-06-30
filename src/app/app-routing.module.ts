@@ -19,7 +19,12 @@ const routes: Routes = [
   { path: 'crearEjercicio', canActivate: [AuthGuard], data: { role: 'ADMINISTRADOR' }, loadChildren: () => import('./crear-ejercicio/crear-ejercicio.module').then(m => m.CrearEjercicioModule) },
   { path: 'ejercicios', canActivate: [AuthGuard], loadChildren: () => import('./listar-ejercicio/listar-ejercicio.module').then(m => m.ListarEjercicioModule) },
   { path: 'ejercicio/:id', canActivate: [AuthGuard], loadChildren: () => import('./detalle-ejercicio/detaller-ejercicio.module').then(m => m.DetalleEjercicioModule) },
-/*   {path: 'historial-membresia', loadChildren: () => import('./features/historial-membresia/historial-membresias.module').then(m => m.HistorialMembresiasModule) },
+  { path: 'rutinas', canActivate: [AuthGuard], loadChildren: () => import('./listar-rutinas/listar-rutinas.module').then(m => m.ListarRutinasModule) },
+  { path: 'rutina/:id', canActivate: [AuthGuard], loadChildren: () => import('./detalle-rutinas/detaller-rutinas.module').then(m => m.DetalleRutinasModule) },
+  { path: 'crearRutina', canActivate: [AuthGuard], data: { role: 'ADMINISTRADOR' }, loadChildren: () => import('./crear-rutinas/crear-rutinas.module').then(m => m.CrearRutinasModule) },
+  { path: 'bodymap', canActivate: [AuthGuard], loadChildren: () => import('./body-map/body-map.module').then(m => m.BodyMapModule) },
+
+  /*   {path: 'historial-membresia', loadChildren: () => import('./features/historial-membresia/historial-membresias.module').then(m => m.HistorialMembresiasModule) },
  */  { path: '**', redirectTo: '/login' }
 ];
 
