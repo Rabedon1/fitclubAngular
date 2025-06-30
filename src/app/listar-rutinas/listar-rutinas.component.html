@@ -1,5 +1,6 @@
 <!-- rutinas.component.html -->
-<div class="p-4">
+<!-- añadir un fondo blanco  -->
+<div class="p-4 bg-gray-100 min-h-screen">
   <div class="flex justify-end mb-4">
     <button
       *ngIf="rol === 'ADMINISTRADOR'"
@@ -9,11 +10,44 @@
       Añadir Rutina
     </button>
   </div>
+  <div
+    class="flex flex-col md:flex-row justify-between items-center gap-4 mb-4"
+  >
+    <input
+      type="text"
+      [(ngModel)]="terminoBusqueda"
+      (input)="filtrarRutinas()"
+      placeholder="Buscar rutina..."
+      class="border px-3 py-2 rounded w-full md:w-1/2"
+    />
+    <select
+      [(ngModel)]="musculoSeleccionado"
+      (change)="filtrarRutinas()"
+      class="border px-3 py-2 rounded w-full md:w-1/3"
+    >
+      <option value="TODOS">Todos los músculos</option>
+      <option *ngFor="let musculo of musculos" [value]="musculo.id">
+        {{ musculo.nombre }}
+      </option>
+    </select>
+
+    <select
+      [(ngModel)]="cantidadFiltro"
+      (change)="filtrarRutinas()"
+      class="border px-3 py-2 rounded w-full md:w-1/3"
+    >
+      <option value="">Todas las cantidades</option>
+      <option value="1">1 ejercicio</option>
+      <option value="2">2 ejercicios</option>
+      <option value="3">3 ejercicios</option>
+      <option value="4+">4 o más</option>
+    </select>
+  </div>
 
   <h2 class="text-xl font-bold mb-4">Rutinas</h2>
   <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
     <div
-      *ngFor="let rutina of rutinas"
+      *ngFor="let rutina of rutinasFiltradas"
       class="bg-white shadow p-4 rounded-xl border"
     >
       <h3 class="text-lg font-semibold">{{ rutina.nombre }}</h3>

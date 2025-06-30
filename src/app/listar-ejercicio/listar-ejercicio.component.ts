@@ -13,6 +13,11 @@ import { AuthService } from '../features/auth/service/auth.service';
 export class ListarEjercicioComponent implements OnInit {
   ejercicios: Ejercicio[] = [];
   rol: string | null = null;
+  ejerciciosFiltrados: Ejercicio[] = [];
+  musculosDisponibles: string[] = [];
+
+  terminoBusqueda: string = '';
+  musculoFiltro: string = '';
 
 
   constructor(private authService: AuthService, private ejercicioService: EjercicioService, private router: Router) { }
@@ -21,9 +26,25 @@ export class ListarEjercicioComponent implements OnInit {
     this.rol = this.authService.getUserRole();
 
     this.ejercicioService.obtenerEjercicios().subscribe({
-      next: (data) => this.ejercicios = data
+      next: (data) => {
+        this.ejercicios = data;
+        this.ejerciciosFiltrados = data;
+
+        // Obtener músculos únicos
+        const musculosSet = new Set<string>();
+        data.forEach(e => e.musculos.forEach(m => musculosSet.add(m)));
+        this.musculosDisponibles = Array.from(musculosSet);
+      }
     });
 
+  }
+  filtrarEjercicios() {
+    const termino = this.terminoBusqueda.toLowerCase();
+    this.ejerciciosFiltrados = this.ejercicios.filter(ejercicio => {
+      const coincideNombre = ejercicio.nombre.toLowerCase().includes(termino);
+      const coincideMusculo = this.musculoFiltro === '' || ejercicio.musculos.includes(this.musculoFiltro);
+      return coincideNombre && coincideMusculo;
+    });
   }
 
   verDetalle(id: number) {

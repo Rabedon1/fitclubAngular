@@ -1,106 +1,73 @@
-/* human-body-map.component.scss */
-.human-body-container {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-  gap: 20px;
-}
-
-.muscle-groups {
-  width: 200px;
-  padding: 15px;
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  
-  h3 {
-    margin-top: 0;
-    color: #333;
-  }
-  
-  .group-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    
-    button {
-      padding: 8px 12px;
-      border: 1px solid #ddd;
-      background-color: white;
-      border-radius: 4px;
-      cursor: pointer;
-      text-align: left;
-      transition: all 0.2s;
-      
-      &:hover {
-        background-color: #f0f0f0;
-      }
-      
-      &.active {
-        background-color: #a80000;
-        color: white;
-        border-color: #a80000;
-      }
-    }
-  }
-}
-
 .human-body {
-  width: 207px;
-  position: relative;
-  padding-top: 240px;
-  height: 260px;
-  display: block;
-  margin: 40px auto;
-  
-  svg {
+    width: 207px;
+    position: relative;
+    padding-top: 240px;
+    height: 260px;
+    display: block;
+    margin: 40px auto;
+}
+
+.human-body svg:hover {
+    cursor: pointer;
+}
+
+.human-body svg:hover path {
+    fill: #ff7d16;
+}
+
+.human-body svg {
     position: absolute;
     left: 50%;
-    transform: translateX(-50%);
-    fill: #000;
-    
-    path {
-      transition: fill 0.3s ease;
-      
-      &:hover {
-        fill: #a80000;
-        cursor: pointer;
-      }
-      
-      &.highlighted {
-        fill: #ff0000;
-        stroke: #000;
-        stroke-width: 0.5px;
-      }
-    }
-  }
-  
-  .group-info {
-    position: absolute;
-    top: 50px;
-    left: 250px;
-    width: 200px;
-    padding: 15px;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    
-    h3 {
-      margin: 0 0 10px 0;
-      color: #a80000;
-    }
-    
-    button {
-      padding: 8px 15px;
-      background-color: #a80000;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      
-      &:hover {
-        background-color: #8a0000;
-      }
-    }
-  }
+    fill: #57c9d5;
+}
+
+.human-body svg.head {
+    margin-left: -28.5px;
+    top: -6px;
+}
+
+.human-body svg.shoulder {
+    margin-left: -53.5px;
+    top: 69px;
+}
+
+.human-body svg.arm {
+    margin-left: -78px;
+    top: 112px;
+}
+
+.human-body svg.cheast {
+    margin-left: -43.5px;
+    top: 88px;
+}
+
+.human-body svg.stomach {
+    margin-left: -37.5px;
+    top: 130px;
+}
+
+.human-body svg.legs {
+    margin-left: -46.5px;
+    top: 205px;
+    z-index: 9999;
+}
+
+.human-body svg.hands {
+    margin-left: -102.5px;
+    top: 224px;
+}
+
+#area {
+    display: block;
+    width: 100%;
+    clear: both;
+    padding: 10px;
+    text-align: center;
+    font-size: 25px;
+    font-family: 'Courier New', Courier, monospace;
+    color: #a5a5a5;
+}
+
+#area #data {
+    color: black;
 }

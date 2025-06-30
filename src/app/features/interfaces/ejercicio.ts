@@ -5,3 +5,8 @@ export interface Ejercicio {
   descripcion: string;
   musculos: string[];
 }
+
+export interface DetalleEjercicioExpandido {
+  ejercicio: Ejercicio;
+  gifUrl: any;
+}
