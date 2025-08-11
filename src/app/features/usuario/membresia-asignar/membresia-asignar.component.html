@@ -1,15 +1,20 @@
 <div class="min-h-screen bg-gray-100 flex items-center justify-center p-6">
   <div class="max-w-lg w-full bg-white rounded-lg shadow-lg p-8">
-    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Asignar Membresía</h2>
+    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+      Asignar Membresía
+    </h2>
     <p class="text-gray-600 mb-6 text-center">ID de usuario: {{ idUsuario }}</p>
 
     <form (ngSubmit)="asignarMembresia()" class="space-y-6">
       <div>
-        <label for="membresia" class="block text-sm font-medium text-gray-700">Seleccionar Membresía</label>
+        <label for="membresia" class="block text-sm font-medium text-gray-700"
+          >Seleccionar Membresía</label
+        >
         <select
           id="membresia"
           [(ngModel)]="dto.idMembresia"
           name="idMembresia"
+          (change)="onSeleccionarMembresia(dto.idMembresia)"
           class="mt-1 block w-full border border-gray-300 rounded-md p-3 text-gray-800 focus:ring-green-500 focus:border-green-500"
           required
         >
@@ -18,10 +23,30 @@
             {{ membresia.nombreMembresia }}
           </option>
         </select>
+        <div
+          *ngIf="membresiaSeleccionada"
+          class="mt-4 bg-gray-50 p-4 rounded-lg border"
+        >
+          <h3 class="text-lg font-semibold text-gray-700">
+            Detalles de la Membresía
+          </h3>
+          <p>
+            <strong>Nombre:</strong> {{ membresiaSeleccionada.nombreMembresia }}
+          </p>
+          <p>
+            <strong>Descripción:</strong>
+            {{ membresiaSeleccionada.descripcion }}
+          </p>
+          <p><strong>Precio:</strong> ${{ membresiaSeleccionada.precio }}</p>
+          <p><strong>Vigencia:</strong> {{ membresiaSeleccionada.vigencia }}</p>
+        </div>
       </div>
+      <!-- cargar datos de la membresia seleccionada  -->
 
       <div>
-        <label for="valorPagado" class="block text-sm font-medium text-gray-700">Valor Pagado</label>
+        <label for="valorPagado" class="block text-sm font-medium text-gray-700"
+          >Valor Pagado</label
+        >
         <input
           id="valorPagado"
           type="number"
@@ -33,6 +58,9 @@
           step="0.01"
           placeholder="Ejemplo: 29.99"
         />
+      </div>
+      <div *ngIf="esValorPagadoInvalido()" class="text-red-600 text-sm mt-1">
+        El valor debe estar entre 0 y ${{ membresiaSeleccionada?.precio }}.
       </div>
 
       <div class="flex justify-center space-x-4">

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MembresiaService } from '../../services/membresia.service';
-import { HistorialMembresiaDto } from '../../interfaces/membresia';
+import { HistorialMembresiaDto, MembresiaDto } from '../../interfaces/membresia';
 
 @Component({
   selector: 'app-membresia-asignar',
@@ -16,6 +16,7 @@ export class MembresiaAsignarComponent implements OnInit {
     valorPagado: 0,
     estado: true
   };
+  membresiaSeleccionada?: MembresiaDto;
 
   membresias: any[] = [];
   idUsuario!: number;
@@ -24,7 +25,7 @@ export class MembresiaAsignarComponent implements OnInit {
     private membresiaService: MembresiaService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.idUsuario = +this.route.snapshot.paramMap.get('id')!;
@@ -43,11 +44,42 @@ export class MembresiaAsignarComponent implements OnInit {
     });
   }
 
+  onSeleccionarMembresia(id: number) {
+    if (!id || id === 0) {
+      this.membresiaSeleccionada = undefined;
+      return;
+    }
+
+    this.membresiaService.obtenerMembresiaPorId(id).subscribe({
+      next: (data) => {
+        console.log('Membresía seleccionada:', data);
+        this.membresiaSeleccionada = data;
+      },
+      error: (error) => {
+        console.error('Error al obtener detalles de la membresía:', error);
+        this.membresiaSeleccionada = undefined;
+      }
+    });
+  }
+
+  esValorPagadoInvalido(): boolean {
+    const pagado = this.dto.valorPagado;
+    const precio = this.membresiaSeleccionada?.precio ?? 0;
+
+    return pagado < 0 || pagado > precio;
+  }
+
   asignarMembresia() {
     console.log('Iniciando asignación de membresía con DTO:', this.dto);
-    this.dto.idMembresia = Number(this.dto.idMembresia); // Convertir a número
-    if (this.dto.idMembresia === 0 || this.dto.valorPagado <= 0) {
-      alert('Por favor, seleccione una membresía y especifique un valor pagado válido.');
+    this.dto.idMembresia = Number(this.dto.idMembresia);
+
+    if (this.dto.idMembresia === 0) {
+      alert('Por favor, seleccione una membresía.');
+      return;
+    }
+
+    if (this.esValorPagadoInvalido()) {
+      alert('El valor pagado debe ser mayor o igual a 0 y no puede superar el precio de la membresía.');
       return;
     }
 
@@ -60,17 +92,22 @@ export class MembresiaAsignarComponent implements OnInit {
       error: (error) => {
         console.error('Error al asignar membresía:', error);
         let errorMessage = 'Error desconocido. Revisa la consola.';
+
         if (error.status === 404) {
-          errorMessage = `El endpoint no fue encontrado (HTTP 404). Verifica la URL: ${error.url}. Asegúrate de que el backend esté corriendo y el endpoint sea correcto.`;
+          errorMessage = `El endpoint no fue encontrado (HTTP 404). Verifica la URL: ${error.url}.`;
         } else if (error.status === 0) {
-          errorMessage = 'No se pudo conectar al servidor. Verifica que el backend esté corriendo en http://localhost:8080 y que no haya problemas de CORS.';
+          errorMessage = 'No se pudo conectar al servidor. Verifica que el backend esté corriendo.';
+        } else if (error.status === 409 && error.error?.message) {
+          errorMessage = error.error.message;
         } else if (error.error?.message) {
           errorMessage = error.error.message;
         }
+
         alert(`Error al asignar membresía: ${errorMessage}`);
       }
     });
   }
+
 
   goBack(): void {
     this.router.navigate(['usuarios', 'list']);

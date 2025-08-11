@@ -9,6 +9,7 @@ import { Musculo } from '../interfaces/musculo';
 })
 export class MusculoService {
   private apiUrl = `${environment.apiUrl}/api/musculos`;
+  // private apiUrl = `${environment.apiUrl}/gimnasio/api/musculos`;
 
   constructor(private http: HttpClient) { }
 
