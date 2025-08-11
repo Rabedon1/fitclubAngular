@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { EventoService } from '../features/services/evento.service';
 import { WebsocketService } from '../features/services/websocket.service';
 import { EventoDto } from '../features/interfaces/evento';
+import { AuthService } from '../features/auth/service/auth.service';
 @Component({
   selector: 'app-lista-eventos',
   standalone: false,
@@ -12,8 +13,10 @@ export class ListaEventosComponent implements OnInit {
   cuposDisponibles: number | null = null;
   eventos: EventoDto[] = [];
 
-  constructor(private eventoService: EventoService,
-    private websocketService: WebsocketService
+  constructor(
+    private eventoService: EventoService,
+    private websocketService: WebsocketService,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -42,24 +45,28 @@ export class ListaEventosComponent implements OnInit {
 
   inscribirse(idEvento: number | null) {
     if (idEvento == null) return;
-
-    const idUsuario = 48; // o el ID real desde login
-
+    const token = this.authService.getToken();
+    let idUsuario: number | null = null;
+    if (token) {
+      const decoded = this.authService.decodeToken(token);
+      if (decoded && decoded.sub) {
+        idUsuario = Number(decoded.sub);
+      }
+    }
+    if (!idUsuario) {
+      alert('No se pudo obtener el usuario actual.');
+      return;
+    }
     this.eventoService.agregarUsuarioAEvento(idEvento, idUsuario).subscribe({
       next: () => alert('Inscripción exitosa!'),
       error: (err) => {
         console.error('Error al inscribirse:', err);
         let mensaje = 'Error al inscribirse.';
-
-        // Si el backend devuelve JSON con .message
         if (err.error?.message) {
           mensaje = err.error.message;
-        }
-        // Si err.error es un string (no parseado)
-        else if (typeof err.error === 'string') {
+        } else if (typeof err.error === 'string') {
           mensaje = err.error;
         }
-
         alert(mensaje);
       }
     });
