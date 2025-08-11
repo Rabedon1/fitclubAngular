@@ -3,6 +3,7 @@ import { EventoService } from '../features/services/evento.service';
 import { WebsocketService } from '../features/services/websocket.service';
 import { EventoDto } from '../features/interfaces/evento';
 import { AuthService } from '../features/auth/service/auth.service';
+import { UsuarioService } from '../features/services/usuario.service';
 @Component({
   selector: 'app-lista-eventos',
   standalone: false,
@@ -16,7 +17,8 @@ export class ListaEventosComponent implements OnInit {
   constructor(
     private eventoService: EventoService,
     private websocketService: WebsocketService,
-    private authService: AuthService
+    private authService: AuthService,
+    private usuarioService: UsuarioService
   ) { }
 
   ngOnInit() {
@@ -46,28 +48,37 @@ export class ListaEventosComponent implements OnInit {
   inscribirse(idEvento: number | null) {
     if (idEvento == null) return;
     const token = this.authService.getToken();
-    let idUsuario: number | null = null;
+    let correo: string | null = null;
     if (token) {
       const decoded = this.authService.decodeToken(token);
       if (decoded && decoded.sub) {
-        idUsuario = Number(decoded.sub);
+        correo = decoded.sub;
       }
     }
-    if (!idUsuario) {
-      alert('No se pudo obtener el usuario actual.');
+    if (!correo) {
+      alert('No se pudo obtener el correo del usuario actual.');
       return;
     }
-    this.eventoService.agregarUsuarioAEvento(idEvento, idUsuario).subscribe({
-      next: () => alert('Inscripción exitosa!'),
+    this.usuarioService.obtenerPorCorreo(correo).subscribe({
+      next: (usuario) => {
+        const idUsuario = usuario.idUsuario;
+        this.eventoService.agregarUsuarioAEvento(idEvento, idUsuario).subscribe({
+          next: () => alert('Inscripción exitosa!'),
+          error: (err) => {
+            console.error('Error al inscribirse:', err);
+            let mensaje = 'Error al inscribirse.';
+            if (err.error?.message) {
+              mensaje = err.error.message;
+            } else if (typeof err.error === 'string') {
+              mensaje = err.error;
+            }
+            alert(mensaje);
+          }
+        });
+      },
       error: (err) => {
-        console.error('Error al inscribirse:', err);
-        let mensaje = 'Error al inscribirse.';
-        if (err.error?.message) {
-          mensaje = err.error.message;
-        } else if (typeof err.error === 'string') {
-          mensaje = err.error;
-        }
-        alert(mensaje);
+        console.error('Error al obtener usuario por correo:', err);
+        alert('No se pudo obtener el usuario actual.');
       }
     });
   }
