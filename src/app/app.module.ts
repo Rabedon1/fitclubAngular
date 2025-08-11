@@ -16,7 +16,6 @@ import { ListarRutinasComponent } from './listar-rutinas/listar-rutinas.componen
 import { DetalleRutinasComponent } from './detalle-rutinas/detalle-rutinas.component';
 import { CrearRutinasComponent } from './crear-rutinas/crear-rutinas.component';
 import { BodyMapComponent } from './body-map/body-map.component';
-import { HistorialCorporalComponent } from './historial-corporal/historial-corporal.component';
 
 
 
