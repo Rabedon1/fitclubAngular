@@ -8,7 +8,7 @@ import { HistorialCorporalDto, HistorialCorporalResponseDto } from '../interface
   providedIn: 'root'
 })
 export class HistorialCorporalService {
-  private apiUrl = 'http://localhost:8080/api/historial-corporal';
+  private apiUrl = 'https://backend-gimnasio-v1.onrender.com/api/historial-corporal';
 
   constructor(private http: HttpClient) { }
 

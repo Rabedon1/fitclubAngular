@@ -8,7 +8,7 @@ import { MembresiaDto } from '../interfaces/membresia';
   providedIn: 'root'
 })
 export class MembresiaService {
-  private apiUrl = 'http://localhost:8080/api';
+  private apiUrl = 'https://backend-gimnasio-v1.onrender.com/api';
 
   constructor(private http: HttpClient) { }
 
