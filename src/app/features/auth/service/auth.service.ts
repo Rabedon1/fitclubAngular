@@ -7,7 +7,7 @@ import { LoginCredentials, User, LoginResponse, DecodedToken } from '../interfac
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private apiUrl = 'https://backend-gimnasio-v1.onrender.com/api/auth';
+  private apiUrl = 'http://localhost:8080/api/auth';
   redirectUrl: string | null = null; // Para redirigir tras login
 
   constructor(private http: HttpClient, private router: Router) {}

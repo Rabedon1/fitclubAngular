@@ -22,8 +22,8 @@ const routes: Routes = [
   { path: 'rutina/:id', canActivate: [AuthGuard], loadChildren: () => import('./detalle-rutinas/detaller-rutinas.module').then(m => m.DetalleRutinasModule) },
   { path: 'crearRutina', canActivate: [AuthGuard], data: { role: 'ADMINISTRADOR' }, loadChildren: () => import('./crear-rutinas/crear-rutinas.module').then(m => m.CrearRutinasModule) },
   { path: 'bodymap', canActivate: [AuthGuard], loadChildren: () => import('./body-map/body-map.module').then(m => m.BodyMapModule) },
-  /*   {path: 'historial-membresia', loadChildren: () => import('./features/historial-membresia/historial-membresias.module').then(m => m.HistorialMembresiasModule) },
- */  { path: '**', redirectTo: '/login' }
+  { path: 'historial-corporal', canActivate: [AuthGuard], loadChildren: () => import('./historial-corporal/historial-corporal.module').then(m => m.HistorialCorporalModule) },
+  { path: '**', redirectTo: '/login' }
 ];
 
 @NgModule({

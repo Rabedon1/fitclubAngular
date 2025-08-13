@@ -24,7 +24,7 @@ import { BodyMapComponent } from './body-map/body-map.component';
   declarations: [
     AppComponent,
 
-  ],
+   ],
   imports: [
     BrowserModule,
     HttpClientModule, // Añadir HttpClientModule

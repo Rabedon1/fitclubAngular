@@ -12,7 +12,7 @@ export class WebsocketService {
 
   constructor() {
     this.client = new Client({
-      webSocketFactory: () => new SockJS('https://backend-gimnasio-v1.onrender.com/ws-eventos'),
+      webSocketFactory: () => new SockJS('http://localhost:8080/ws-eventos'),
       reconnectDelay: 5000,
       debug: (str) => { console.log(str); }
     });

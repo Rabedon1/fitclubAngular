@@ -7,7 +7,7 @@ import { EventoDto } from '../interfaces/evento';
 @Injectable({ providedIn: 'root' })
 export class EventoService {
   constructor(private http: HttpClient) { }
-  private baseUrl = 'https://backend-gimnasio-v1.onrender.com/api/eventos';
+  private baseUrl = 'http://localhost:8080/api/eventos';
 
   crearEvento(evento: EventoDto) {
     return this.http.post(`${this.baseUrl}`, evento);

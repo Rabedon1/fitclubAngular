@@ -55,6 +55,6 @@ export class ListarEjercicioComponent implements OnInit {
     this.router.navigate(['/crearEjercicio']);
   }
   cancelar(): void {
-    this.router.navigate(['/home-admin']);
+    this.router.navigate(['/home']);
   }
 }
